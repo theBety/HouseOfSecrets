@@ -1,0 +1,12 @@
+
+bow,candle,feather
+axe,diary,scissors,400
+arrow,string,flower,400
+arrow,flower,flower,key,fabric
+knife,fork,pencil,bullets,200
+arrow,flower,500
+arrow,mirror,flower,50
+arrow,paper,flower
+sword,wood,vase,450
+gun,flower,100
+arrow,flower,300
