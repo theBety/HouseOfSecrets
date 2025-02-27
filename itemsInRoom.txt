@@ -1,4 +1,3 @@
-
 bow,candle,feather
 axe,diary,scissors,400
 arrow,string,flower,400
