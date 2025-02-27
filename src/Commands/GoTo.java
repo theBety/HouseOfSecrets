@@ -5,9 +5,10 @@ import World.Room;
 
 import java.util.Scanner;
 
-public class GoTo implements Command{
+public class GoTo implements Command {
     Scanner sc = new Scanner(System.in);
     private final LoadMap map = new LoadMap();
+
     //in this step hashmap empties itself.
     @Override
     public String execute() {
@@ -25,7 +26,7 @@ public class GoTo implements Command{
                 }
             }
             return "You can't go in this room.";
-        }catch (Exception e){
+        } catch (Exception e) {
             return "Something went wrong";
         }
     }

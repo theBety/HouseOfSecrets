@@ -48,7 +48,7 @@ public class Entity {
                 case "Elf":
                     loreText = "Oh look there's an elf. She can give you something useful!";
                 case "Phoenix":
-                    loreText = "He will upgrade your weapon! Hurry!";
+                    loreText = "He will upgrade your weapon! Hurry if you have some coins!";
                 case "Knight":
                     loreText = "I have a feeling that someone is following me. That's strange.";
             }
