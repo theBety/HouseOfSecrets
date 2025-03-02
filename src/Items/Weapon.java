@@ -3,7 +3,7 @@ package Items;
 public class Weapon extends Item{
     private int rating;
 
-    public Weapon(int rating, String name) {
+    public Weapon(String name, int rating) {
         this.rating = rating;
         this.name = name;
     }

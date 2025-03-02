@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class Inventory {
     ArrayList<Item> inventory = new ArrayList<>();
+    private int coins = 0;
 
     public Inventory() {
     }
@@ -14,5 +15,21 @@ public class Inventory {
 
     public void setInventory(ArrayList<Item> inventory) {
         this.inventory = inventory;
+    }
+
+    public int getCoins() {
+        return coins;
+    }
+
+    public void setCoins(int coins) {
+        this.coins += coins;
+    }
+
+    @Override
+    public String toString() {
+        return "Inventory{" +
+                "inventory=" + inventory +
+                ", coins=" + coins +
+                '}';
     }
 }

@@ -26,6 +26,7 @@ public class Entity {
         }catch(IOException i){
             System.err.println("Error in loadAllItems()");
         }
+        return null;
     }
     public void ability() {
         try{
@@ -44,7 +45,7 @@ public class Entity {
                     loreText = "Oh look there's a fairy. She can give you something useful!";
                     int randomItem2 = rd.nextInt(itemsInGame.length);
                     //DODELAT
-                    inventory.getInventory().add(ITEM);
+                    //inventory.getInventory().add(ITEM);
                 case "Elf":
                     loreText = "Oh look there's an elf. She can give you something useful!";
                 case "Phoenix":
