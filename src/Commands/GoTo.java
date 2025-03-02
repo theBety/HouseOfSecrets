@@ -7,12 +7,12 @@ import java.util.Scanner;
 
 public class GoTo implements Command {
     Scanner sc = new Scanner(System.in);
-    private final LoadMap map = new LoadMap();
 
     //in this step hashmap empties itself.
     @Override
     public String execute() {
         try {
+            LoadMap map = new LoadMap();
             map.loadMap();
             Room currentRoom = map.getCurrentPosition();
             System.out.println("Where do you want to go?\n>> ");

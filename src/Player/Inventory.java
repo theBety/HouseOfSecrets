@@ -3,7 +3,7 @@ import Items.Item;
 import java.util.ArrayList;
 
 public class Inventory {
-    ArrayList<Item> inventory = new ArrayList<>();
+    private ArrayList<Item> inventory = new ArrayList<>();
     private int coins = 0;
 
     public Inventory() {

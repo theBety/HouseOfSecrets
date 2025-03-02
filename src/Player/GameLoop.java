@@ -11,7 +11,7 @@ import java.util.Scanner;
 
 public class GameLoop {
     private boolean gameOver = false;
-    private Scanner sc = new Scanner(System.in);
+    Scanner sc = new Scanner(System.in);
     private HashMap<String, Command> commands = new HashMap<>();
 
     public void initialize(){
@@ -58,5 +58,29 @@ public class GameLoop {
         }catch(IOException e){
             System.err.println("Error reading story file");
         }
+    }
+
+    public boolean isGameOver() {
+        return gameOver;
+    }
+
+    public void setGameOver(boolean gameOver) {
+        this.gameOver = gameOver;
+    }
+
+    public HashMap<String, Command> getCommands() {
+        return commands;
+    }
+
+    public void setCommands(HashMap<String, Command> commands) {
+        this.commands = commands;
+    }
+
+    @Override
+    public String toString() {
+        return "GameLoop{" +
+                "gameOver=" + gameOver +
+                ", commands=" + commands +
+                '}';
     }
 }
