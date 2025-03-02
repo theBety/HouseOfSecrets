@@ -1,5 +1,7 @@
 package World;
 
+import Entities.Entity;
+import Items.Coin;
 import Items.LoreItems;
 import Items.Weapon;
 
@@ -13,7 +15,7 @@ public class LoadMap {
     private final int start = 1;
     private int currentPosition = start;
 
-    public void loadMap() {
+    public boolean loadMap() {
         try {
             BufferedReader br = new BufferedReader(new FileReader("map.txt"));
             String text;
@@ -23,10 +25,13 @@ public class LoadMap {
                 roomsInGame.put(Integer.parseInt(lines[1]), new Room(Integer.parseInt(lines[1]), lines[0], locationNum));
             }
             br.close();
-            //load entities in each room
-
+            loadItems();
+            loadEntities();
             System.out.println(roomsInGame);
+            return true;
         } catch (IOException e) {
+            System.err.println(e.getMessage());
+            return false;
         }
     }
 
@@ -40,9 +45,26 @@ public class LoadMap {
                 String[] line = text.split(",");
                 String[] weapon = line[0].split(";");
                 roomsInGame.get(counter).getItemsInRoom().add(new Weapon(weapon[0], Integer.parseInt(weapon[1])));
-                for (int i = 1; i < line.length; i++) {
-                    roomsInGame.get(counter).getItemsInRoom().add(new LoreItems());
+                roomsInGame.get(counter).getItemsInRoom().add(new Coin("coin",Integer.parseInt(line[line.length-1])));
+                for (int i = 1; i < line.length-2; i++) {
+                    String[] item = line[i].split(";");
+                    roomsInGame.get(counter).getItemsInRoom().add(new LoreItems(Integer.parseInt(item[1]), item[0]));
                 }
+            }
+        }catch(IOException i){
+            System.err.println("Error loading Items");
+        }
+    }
+
+    public void loadEntities(){
+        try{
+            BufferedReader br = new BufferedReader(new FileReader("EntitiesInRooms.txt"));
+            String text;
+            int counter = -1;
+            while ((text = br.readLine()) != null) {
+                counter++;
+                String[] line = text.split(";");
+                roomsInGame.get(counter).getEntitiesInRoom().add(new Entity(line[0], line[1]));
             }
         }catch(IOException i){
             System.err.println("Error loading Items");
@@ -60,10 +82,6 @@ public class LoadMap {
         this.roomsInGame = roomsInGame;
     }
 
-    public int getStart() {
-        return start;
-    }
-
     public Room getCurrentPosition() {
         return roomsInGame.get(currentPosition);
     }
@@ -74,10 +92,9 @@ public class LoadMap {
 
     @Override
     public String toString() {
-        return "LoadMap{" +
+        return
                 "roomsInGame=" + roomsInGame +
-                ", start=" + start +
-                ", currentPosition=" + currentPosition +
-                '}';
+                ", start: " + start +
+                ", currentPosition: " + currentPosition ;
     }
 }

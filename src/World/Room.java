@@ -58,13 +58,13 @@ public class Room {
 
     @Override
     public String toString() {
-        return "Room{" +
-                "roomId=" + roomId +
-                ", name='" + name + '\'' +
-                ", availableRooms=" + Arrays.toString(availableRooms) +
-                ", itemsInRoom=" + itemsInRoom +
-                ", EntitiesInRoom=" + EntitiesInRoom +
-                '}';
+        return
+                "roomId: " + roomId +
+                ", name: " + name +
+                ", availableRooms: " + Arrays.toString(availableRooms) +
+                ", itemsInRoom: " + itemsInRoom +
+                ", EntitiesInRoom: " + EntitiesInRoom +
+                '\n';
     }
 
     /*
