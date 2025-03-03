@@ -8,7 +8,6 @@ public class Task {
     private boolean isItDone = false;
     private int codeTask;
 
-
     public boolean doingTask(){
         //doing task
         //print des, then input, then check
@@ -17,10 +16,11 @@ public class Task {
     public Task() {
     }
 
-    public Task(Item requiredItem, String tasksDescription, boolean isItDone) {
+    public Task(Item requiredItem, String tasksDescription, boolean isItDone, int codeTask) {
         this.requiredItem = requiredItem;
         this.tasksDescription = tasksDescription;
         this.isItDone = isItDone;
+        this.codeTask = codeTask;
     }
 
     public Item getRequiredItem() {
@@ -53,6 +53,15 @@ public class Task {
                 "requiredItem=" + requiredItem +
                 ", tasksDescription='" + tasksDescription + '\'' +
                 ", isItDone=" + isItDone +
+                "codeTask=" + codeTask +
                 '}';
+    }
+
+    public int getCodeTask() {
+        return codeTask;
+    }
+
+    public void setCodeTask(int codeTask) {
+        this.codeTask = codeTask;
     }
 }
