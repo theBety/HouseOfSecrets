@@ -71,6 +71,10 @@ public class LoadMap {
         }
     }
 
+    public void LoadTasks(){
+
+    }
+
     public LoadMap() {
     }
 

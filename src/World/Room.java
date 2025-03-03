@@ -11,14 +11,18 @@ public class Room {
     private String name;
     private String[] availableRooms;
     private ArrayList<Item> itemsInRoom = new ArrayList<>();
-    private ArrayList<Entity> EntitiesInRoom = new ArrayList<>();
+    private ArrayList<Entity> entitiesInRoom = new ArrayList<>();
+    private ArrayList<Task> tasksInRoom = new ArrayList<>();
+
 
     public Room(int roomId, String name, String[] availableRooms) {
         this.roomId = roomId;
         this.name = name;
         this.availableRooms = availableRooms;
     }
-    public Room(){}
+
+    public Room() {
+    }
 
     public int getRoomId() {
         return roomId;
@@ -49,11 +53,11 @@ public class Room {
     }
 
     public ArrayList<Entity> getEntitiesInRoom() {
-        return EntitiesInRoom;
+        return entitiesInRoom;
     }
 
     public void setEntitiesInRoom(ArrayList<Entity> entitiesInRoom) {
-        EntitiesInRoom = entitiesInRoom;
+        this.entitiesInRoom = entitiesInRoom;
     }
 
     @Override
@@ -63,8 +67,17 @@ public class Room {
                 ", name: " + name +
                 ", availableRooms: " + Arrays.toString(availableRooms) +
                 ", itemsInRoom: " + itemsInRoom +
-                ", EntitiesInRoom: " + EntitiesInRoom +
-                '\n';
+                ", entitiesInRoom: " + entitiesInRoom +
+                "tasksInRoom=" + tasksInRoom +
+                        '\n';
+    }
+
+    public ArrayList<Task> getTasksInRoom() {
+        return tasksInRoom;
+    }
+
+    public void setTasksInRoom(ArrayList<Task> tasksInRoom) {
+        this.tasksInRoom = tasksInRoom;
     }
 
     /*
