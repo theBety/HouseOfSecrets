@@ -1,28 +1,31 @@
 package Commands;
 
-import World.LoadMap;
+import Player.Player;
 import World.Room;
+import World.Settings;
 
 import java.util.Scanner;
 
-public class GoTo implements Command {
+public class GoTo extends Command {
+
+    protected Player player;
+
+    public void setCurrentPosition(Player player) {
+        this.player = player;
+    }
+
     Scanner sc = new Scanner(System.in);
 
-    //in this step hashmap empties itself.
     @Override
     public String execute() {
         try {
-            LoadMap map = new LoadMap();
-            map.loadMap();
-            Room currentRoom = map.getCurrentPosition();
+            //Room currentRoom = currentPosition;
             System.out.println("Where do you want to go?\n>> ");
             int idOfRoom = sc.nextInt();
-            String[] currentAvailableRooms = currentRoom.getAvailableRooms();
-            for (String currentAvailableRoom : currentAvailableRooms) {
-                if (currentAvailableRoom.equals(Integer.toString(idOfRoom))) {
-                    currentRoom = map.getRoomsInGame().get(idOfRoom);
-                    map.setCurrentPosition(idOfRoom);
-                    return "You're now in room " + currentRoom;
+            String[] currentAvailableRooms = currentPosition.getAvailableRooms();
+            for (String room : currentAvailableRooms) {
+                if (room.equals(Integer.toString(idOfRoom))) {
+                    return String.valueOf(idOfRoom);
                 }
             }
             return "You can't go in this room.";
@@ -32,7 +35,7 @@ public class GoTo implements Command {
     }
 
     @Override
-    public Boolean exit() {
+    public boolean exit() {
         return false;
     }
 

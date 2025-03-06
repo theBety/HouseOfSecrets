@@ -1,13 +1,13 @@
 package Commands;
 
-public class Unlock implements Command {
+public class Unlock extends Command {
     @Override
     public String execute() {
         return null;
     }
 
     @Override
-    public Boolean exit() {
+    public boolean exit() {
         return false;
     }
 }

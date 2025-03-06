@@ -1,13 +1,15 @@
 package Commands;
 
-public class TalkTo implements Command{
+public class TalkTo extends Command{
     @Override
     public String execute() {
-        return null;
+        return "";
     }
 
     @Override
-    public Boolean exit() {
+    public boolean exit() {
         return false;
     }
+
+
 }

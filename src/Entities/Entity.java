@@ -1,6 +1,7 @@
 package Entities;
 
-import Player.Inventory;
+import Player.Player;
+import Player.Player;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -10,7 +11,7 @@ import java.util.Random;
 
 public class Entity {
     Random rd = new Random();
-    Inventory inventory = new Inventory();
+    Player inventory = new Player();
     private String name;
     private String loreText;
     private String[] itemsInGame;
@@ -45,7 +46,7 @@ public class Entity {
                 case "Fairy":
                     int randomItem2 = rd.nextInt(itemsInGame.length);
                     //DODELAT
-                    //inventory.getInventory().add(ITEM);
+                    //player.getInventory().add(ITEM);
                 case "Elf":
                 case "Phoenix":
                 case "Knight":

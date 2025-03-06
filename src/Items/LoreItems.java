@@ -3,9 +3,9 @@ package Items;
 public class LoreItems extends Item{
     private int inWhichRoomIsUsed;
 
-    public LoreItems(int inWhichRoomIsUsed, String name) {
-        this.inWhichRoomIsUsed = inWhichRoomIsUsed;
+    public LoreItems(String name, int inWhichRoomIsUsed) {
         this.name = name;
+        this.inWhichRoomIsUsed = inWhichRoomIsUsed;
     }
 
     public int getInWhichRoomIsUsed() {
