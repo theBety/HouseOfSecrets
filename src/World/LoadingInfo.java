@@ -12,14 +12,12 @@ import java.io.IOException;
 import java.util.HashMap;
 
 public class LoadingInfo {
-    private HashMap<Integer, Room> roomsInGame = new HashMap<>();
 
     public LoadingInfo() {
     }
 
-    public boolean loadMap() {
+    public boolean loadMap(HashMap<Integer, Room> roomsInGame) {
         try {
-            currentRoom = roomsInGame.get(1);
             BufferedReader br = new BufferedReader(new FileReader("map.txt"));
             String text;
             while ((text = br.readLine()) != null) {
@@ -28,8 +26,8 @@ public class LoadingInfo {
                 roomsInGame.put(Integer.parseInt(lines[1]), new Room(Integer.parseInt(lines[1]), lines[0], locationNum));
             }
             br.close();
-            loadItems();
-            loadEntities();
+            loadItems(roomsInGame);
+            loadEntities(roomsInGame);
             System.out.println(roomsInGame);
             return true;
         } catch (IOException e) {
@@ -38,7 +36,7 @@ public class LoadingInfo {
         }
     }
 
-    public void loadItems(){
+    public void loadItems(HashMap<Integer, Room> roomsInGame){
         try{
             BufferedReader br = new BufferedReader(new FileReader("itemsInRoom.txt"));
             String text;
@@ -59,7 +57,7 @@ public class LoadingInfo {
         }
     }
 
-    public void loadEntities(){
+    public void loadEntities(HashMap<Integer, Room> roomsInGame){
         try{
             BufferedReader br = new BufferedReader(new FileReader("EntitiesInRooms.txt"));
             String text;
@@ -74,23 +72,7 @@ public class LoadingInfo {
         }
     }
 
-    public void LoadTasks(){
+    public void LoadTasks(HashMap<Integer, Room> roomsInGame){
 
-    }
-
-    public HashMap<Integer, Room> getRoomsInGame() {
-        return roomsInGame;
-    }
-
-
-    public void setRoomsInGame(HashMap<Integer, Room> roomsInGame) {
-        this.roomsInGame = roomsInGame;
-    }
-
-
-    @Override
-    public String toString() {
-        return
-                "roomsInGame=" + roomsInGame;
     }
 }

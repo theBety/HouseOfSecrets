@@ -3,9 +3,11 @@ import Items.Item;
 import World.Room;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Player {
     private ArrayList<Item> inventory = new ArrayList<>();
+    private HashMap<Integer, Room> roomsInGame = new HashMap<>();
     private Room currentPosition;
     private int coins = 0;
 
@@ -36,10 +38,24 @@ public class Player {
         this.currentPosition = currentPosition;
     }
 
+    public HashMap<Integer, Room> getRoomsInGame() {
+        return roomsInGame;
+    }
+
+    public void setRoomsInGame(HashMap<Integer, Room> roomsInGame) {
+        this.roomsInGame = roomsInGame;
+    }
+
+    public Room setStart(){
+        currentPosition = roomsInGame.get(1);
+        return currentPosition;
+    }
+
     @Override
     public String toString() {
-        return "Inventory{" +
-                "player=" + inventory +
+        return "Player{" +
+                "inventory=" + inventory +
+                ", roomsInGame=" + roomsInGame +
                 ", currentPosition=" + currentPosition +
                 ", coins=" + coins +
                 '}';

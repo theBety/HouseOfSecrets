@@ -1,9 +1,8 @@
 package Commands;
 
 import Player.Player;
-import World.Room;
-import World.Settings;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class GoTo extends Command {
@@ -19,17 +18,19 @@ public class GoTo extends Command {
     @Override
     public String execute() {
         try {
-            //Room currentRoom = currentPosition;
             System.out.println("Where do you want to go?\n>> ");
             int idOfRoom = sc.nextInt();
-            String[] currentAvailableRooms = currentPosition.getAvailableRooms();
+            String[] currentAvailableRooms = player.getCurrentPosition().getAvailableRooms();
             for (String room : currentAvailableRooms) {
                 if (room.equals(Integer.toString(idOfRoom))) {
-                    return String.valueOf(idOfRoom);
+                    player.setCurrentPosition(player.getRoomsInGame().get(idOfRoom));
+                    return "You're now in: " + player.getCurrentPosition().getName() + " \nwith id: " + idOfRoom;
                 }
             }
             return "You can't go in this room.";
-        } catch (Exception e) {
+        } catch (InputMismatchException i) {
+            return "Invalid input.";
+        }catch (Exception e) {
             return "Something went wrong";
         }
     }
