@@ -12,8 +12,7 @@ public class Settings {
     public TakeObject t1 = new TakeObject();
 
     public void start() {
-        System.out.println(loadInfo.loadMap(player.getRoomsInGame(), player.getWeapons()));
-        System.out.println(player.setStart());
+        initialize();
         //GoTo g = new GoTo();
         t1.setCurrentPosition(player);
         System.out.println(t1.execute());
@@ -28,9 +27,14 @@ public class Settings {
     }
 
     public void initialize(){
-
-        //tady vse nastavim. spustim metody z loadmap aby se naplnila hasmapa
-        //vse bude dobrt :)
+        System.out.println(loadInfo.loadMap(player.getRoomsInGame(), player.getWeapons()));
+        System.out.println(player.setStart());
+        player.getWeapons().put("bow", 3);
+        player.getWeapons().put("axe", 4);
+        player.getWeapons().put("arrow", 2);
+        player.getWeapons().put("knife", 2);
+        player.getWeapons().put("sword", 5);
+        player.getWeapons().put("gun", 6);
     }
 
     public Settings() {

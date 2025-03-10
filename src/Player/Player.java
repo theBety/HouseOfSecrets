@@ -1,4 +1,6 @@
 package Player;
+
+import Items.Coin;
 import Items.Item;
 import World.Room;
 
@@ -20,6 +22,7 @@ public class Player {
         return inventory;
     }
 
+    //region Set&Get
     public void setInventory(ArrayList<Item> inventory) {
         this.inventory = inventory;
     }
@@ -48,7 +51,7 @@ public class Player {
         this.roomsInGame = roomsInGame;
     }
 
-    public Room setStart(){
+    public Room setStart() {
         setCurrentPosition(roomsInGame.get(1));
         return getCurrentPosition();
     }
@@ -68,6 +71,8 @@ public class Player {
     public void setGameOver(boolean gameOver) {
         this.gameOver = gameOver;
     }
+
+    //endregion
 
     @Override
     public String toString() {

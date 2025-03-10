@@ -26,21 +26,22 @@ public class Entity {
         this.loreText = loreText;
     }
 
-    public String[] loadAllItems(){
-        try{
+    public String[] loadAllItems() {
+        try {
             BufferedReader br = new BufferedReader(new FileReader("ListOfAllItems.txt"));
             String text;
-            while((text = br.readLine())!= null){
+            while ((text = br.readLine()) != null) {
                 itemsInGame = text.split(",");
             }
             return itemsInGame;
-        }catch(IOException i){
+        } catch (IOException i) {
             System.err.println("Error in loadAllItems()");
         }
         return null;
     }
+
     public void ability() {
-        try{
+        try {
             switch (name) {
                 case "Goblin":
                     System.out.println("You need to give him some item. Choose carefully, losing lore item could mean game over because you" +
@@ -64,28 +65,31 @@ public class Entity {
                 default:
                     throw new IllegalStateException("Unexpected value: " + name);
             }
-        }catch(InputMismatchException | IndexOutOfBoundsException e){
+        } catch (InputMismatchException | IndexOutOfBoundsException e) {
             System.err.println("Wrong input");
-        } catch(Exception e){
+        } catch (Exception e) {
             System.err.println("Somethings wrong");
         }
 
     }
 
-    public void witchAndMedusa(){
-        int randomRank = rd.nextInt(5)+1;
+    public void witchAndMedusa() {
+        int randomRank = rd.nextInt(5) + 1;
         System.out.println("She has weapon of rank " + randomRank + ". Do you have weapon better then her?\n" +
                 "If so, Type in its name. if not, type in 'no'.");
         String nameOfWeapon = sc.next().toLowerCase();
-        if(nameOfWeapon.equals("no")){
+        if (nameOfWeapon.equals("no")) {
             System.out.println("Bad for you. She is slowly killing you. You are DEAD. GAME OVER.");
             player.setGameOver(true);
-        }else{
+        } else {
             System.out.println("Okay, now type in its ranking");
             int rankingOfPlayersWeapon = sc.nextInt();
-            if(player.getWeapons().get(nameOfWeapon).equals(rankingOfPlayersWeapon)){
+            if (player.getWeapons().get(nameOfWeapon).equals(rankingOfPlayersWeapon)) {
                 System.out.println("You did it!");
                 player.getCurrentPosition().getEntitiesInRoom().remove(0);
+            } else {
+                System.out.println("Bad for you. She is slowly killing you. You are DEAD. GAME OVER.");
+                player.setGameOver(true);
             }
         }
     }
@@ -118,6 +122,6 @@ public class Entity {
     public String toString() {
         return
                 "name: " + name +
-                ", loreText: '" + loreText + "'\n";
+                        ", loreText: '" + loreText + "'\n";
     }
 }

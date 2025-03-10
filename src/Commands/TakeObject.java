@@ -23,8 +23,11 @@ public class TakeObject extends Command {
             System.out.println("Items in this room: \n" + player.getCurrentPosition().getItemsInRoom());
             System.out.println("Which item do you want to take? Type its sequence number\n>> ");
             int input = sc.nextInt();
-            player.getInventory().add(player.getCurrentPosition().getItemsInRoom().get(input-1));
-            player.getCurrentPosition().getItemsInRoom().remove(input-1);
+            if (input == player.getCurrentPosition().getItemsInRoom().size()) {
+                //player.setCoins(player.getCurrentPosition().getItemsInRoom().get(input - 1));
+            }
+            player.getInventory().add(player.getCurrentPosition().getItemsInRoom().get(input - 1));
+            player.getCurrentPosition().getItemsInRoom().remove(input - 1);
             return "Inventory: " + player.getInventory().toString();
         } catch (IndexOutOfBoundsException | InputMismatchException e) {
             return "Invalid Input";
