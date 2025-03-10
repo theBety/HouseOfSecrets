@@ -7,7 +7,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Room {
-    //private boolean isLocked;
+    private boolean isLocked;
+    private int password;
     private int roomId;
     private String name;
     private String[] availableRooms;
@@ -16,10 +17,12 @@ public class Room {
     private ArrayList<Task> tasksInRoom = new ArrayList<>();
 
 
-    public Room(int roomId, String name, String[] availableRooms) {
+    public Room(int roomId, String name, String[] availableRooms, boolean isLocked, int password) {
         this.roomId = roomId;
         this.name = name;
         this.availableRooms = availableRooms;
+        this.isLocked = isLocked;
+        this.password = password;
     }
 
     public Room() {
@@ -59,6 +62,26 @@ public class Room {
 
     public void setEntitiesInRoom(ArrayList<Entity> entitiesInRoom) {
         this.entitiesInRoom = entitiesInRoom;
+    }
+
+    public boolean isLocked() {
+        return isLocked;
+    }
+
+    public void setLocked(boolean locked) {
+        isLocked = locked;
+    }
+
+    public int getPassword() {
+        return password;
+    }
+
+    public void setPassword(int password) {
+        this.password = password;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Override

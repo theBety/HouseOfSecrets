@@ -23,7 +23,9 @@ public class LoadingInfo {
             while ((text = br.readLine()) != null) {
                 String[] lines = text.split(":");
                 String[] locationNum = lines[2].split(" ");
-                roomsInGame.put(Integer.parseInt(lines[1]), new Room(Integer.parseInt(lines[1]), lines[0], locationNum));
+                //vymyslet hesla k mistnostem
+                roomsInGame.put(Integer.parseInt(lines[1]), new Room(Integer.parseInt(lines[1]), lines[0], locationNum, 
+                        Boolean.parseBoolean(lines[3])));
             }
             br.close();
             loadItems(roomsInGame, weapons);

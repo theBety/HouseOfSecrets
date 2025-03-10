@@ -24,6 +24,10 @@ public class GoTo extends Command {
             String[] currentAvailableRooms = player.getCurrentPosition().getAvailableRooms();
             for (String room : currentAvailableRooms) {
                 if (room.equals(Integer.toString(idOfRoom))) {
+                    if(player.getRoomsInGame().get(idOfRoom).isLocked()){
+                        System.out.println("Do you know the password? if not, type in no. if yes, type in password.");
+                        //az budu mit hesla tak dodelat
+                    }
                     player.setCurrentPosition(player.getRoomsInGame().get(idOfRoom));
                     return "You're now in: " + player.getCurrentPosition().getName() + " \nwith id: " + idOfRoom;
                 }

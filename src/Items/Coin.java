@@ -1,7 +1,7 @@
 package Items;
 
 public class Coin extends Item{
-    private int value;
+    protected int value;
 
     public Coin(String name, int value) {
         this.value = value;
