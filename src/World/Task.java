@@ -6,7 +6,7 @@ public class Task {
     private Item requiredItem;
     private String tasksDescription;
     private boolean isItDone = false;
-    private int codeTask;
+    private int passwordFromTask;
 
     public boolean doingTask(){
         //doing task
@@ -16,11 +16,11 @@ public class Task {
     public Task() {
     }
 
-    public Task(Item requiredItem, String tasksDescription, boolean isItDone, int codeTask) {
+    public Task(Item requiredItem, String tasksDescription, boolean isItDone, int passwordFromTask) {
         this.requiredItem = requiredItem;
         this.tasksDescription = tasksDescription;
         this.isItDone = isItDone;
-        this.codeTask = codeTask;
+        this.passwordFromTask = passwordFromTask;
     }
 
     public Item getRequiredItem() {
@@ -53,15 +53,15 @@ public class Task {
                 "requiredItem=" + requiredItem +
                 ", tasksDescription='" + tasksDescription + '\'' +
                 ", isItDone=" + isItDone +
-                "codeTask=" + codeTask +
+                "passwordFromTask=" + passwordFromTask +
                 '}';
     }
 
-    public int getCodeTask() {
-        return codeTask;
+    public int getPasswordFromTask() {
+        return passwordFromTask;
     }
 
-    public void setCodeTask(int codeTask) {
-        this.codeTask = codeTask;
+    public void setPasswordFromTask(int passwordFromTask) {
+        this.passwordFromTask = passwordFromTask;
     }
 }

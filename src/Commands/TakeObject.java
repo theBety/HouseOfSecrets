@@ -25,7 +25,7 @@ public class TakeObject extends Command {
             System.out.println("Which item do you want to take? Type its sequence number\n>> ");
             int input = sc.nextInt();
             if (player.getCurrentPosition().getItemsInRoom().get(input-1).getName().equals("Coin")) {
-                player.setCoins(player.getCurrentPosition().getItemsInRoom().get(input - 1).);
+                //nejde mi dostat se k hodnote coinu.
             }
             player.getInventory().add(player.getCurrentPosition().getItemsInRoom().get(input - 1));
             player.getCurrentPosition().getItemsInRoom().remove(input - 1);
