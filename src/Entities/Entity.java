@@ -7,14 +7,19 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.InputMismatchException;
 import java.util.Random;
+import java.util.Scanner;
 
 public class Entity {
     Random rd = new Random();
-    Player inventory = new Player();
+    protected Player player;
     private String name;
     private String loreText;
     private String[] itemsInGame;
+    int randomItem = 0;
+
+    Scanner sc = new Scanner(System.in);
 
     public Entity(String name, String loreText) {
         this.name = name;
@@ -38,11 +43,16 @@ public class Entity {
         try{
             switch (name) {
                 case "Goblin":
-                    int randomItem = rd.nextInt(inventory.getInventory().size());
-                    inventory.getInventory().remove(randomItem);
+                    System.out.println("You need to give him some item. Choose carefully, losing lore item could mean game over because you" +
+                            "can't clear some task. So which item are you giving him? Type in on which line of your inventory the item is.");
+                    int input = sc.nextInt();
+                    player.getInventory().remove(input);
                 case "Witch":
+                    witchAndMedusa();
                 case "Medusa":
+                    witchAndMedusa();
                 case "Hydras":
+
                 case "Fairy":
                     int randomItem2 = rd.nextInt(itemsInGame.length);
                     //DODELAT
@@ -50,11 +60,34 @@ public class Entity {
                 case "Elf":
                 case "Phoenix":
                 case "Knight":
+                    break;
+                default:
+                    throw new IllegalStateException("Unexpected value: " + name);
             }
-        }catch(Exception e){
-
+        }catch(InputMismatchException | IndexOutOfBoundsException e){
+            System.err.println("Wrong input");
+        } catch(Exception e){
+            System.err.println("Somethings wrong");
         }
 
+    }
+
+    public void witchAndMedusa(){
+        int randomRank = rd.nextInt(5)+1;
+        System.out.println("She has weapon of rank " + randomRank + ". Do you have weapon better then her?\n" +
+                "If so, Type in its name. if not, type in 'no'.");
+        String nameOfWeapon = sc.next().toLowerCase();
+        if(nameOfWeapon.equals("no")){
+            System.out.println("Bad for you. She is slowly killing you. You are DEAD. GAME OVER.");
+            player.setGameOver(true);
+        }else{
+            System.out.println("Okay, now type in its ranking");
+            int rankingOfPlayersWeapon = sc.nextInt();
+            if(player.getWeapons().get(nameOfWeapon).equals(rankingOfPlayersWeapon)){
+                System.out.println("You did it!");
+                player.getCurrentPosition().getEntitiesInRoom().remove(0);
+            }
+        }
     }
 
     public String getName() {

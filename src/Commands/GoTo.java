@@ -18,6 +18,7 @@ public class GoTo extends Command {
     @Override
     public String execute() {
         try {
+            //zamcena odemcena mistnost NENI
             System.out.println("Where do you want to go?\n>> ");
             int idOfRoom = sc.nextInt();
             String[] currentAvailableRooms = player.getCurrentPosition().getAvailableRooms();

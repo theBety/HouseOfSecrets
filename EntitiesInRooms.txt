@@ -1,4 +1,4 @@
-Goblin;Oh no! He took something from you!
+Goblin;Oh no! He wants to take something from you!
 null;null
 Fairy;Oh look there's a fairy. She can give you something useful!
 Knight;I have a feeling that someone is following me. That's strange.

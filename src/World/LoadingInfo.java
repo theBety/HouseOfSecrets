@@ -16,7 +16,7 @@ public class LoadingInfo {
     public LoadingInfo() {
     }
 
-    public boolean loadMap(HashMap<Integer, Room> roomsInGame) {
+    public boolean loadMap(HashMap<Integer, Room> roomsInGame, HashMap<String, Integer> weapons) {
         try {
             BufferedReader br = new BufferedReader(new FileReader("map.txt"));
             String text;
@@ -26,7 +26,7 @@ public class LoadingInfo {
                 roomsInGame.put(Integer.parseInt(lines[1]), new Room(Integer.parseInt(lines[1]), lines[0], locationNum));
             }
             br.close();
-            loadItems(roomsInGame);
+            loadItems(roomsInGame, weapons);
             loadEntities(roomsInGame);
             System.out.println(roomsInGame);
             return true;
@@ -36,7 +36,7 @@ public class LoadingInfo {
         }
     }
 
-    public void loadItems(HashMap<Integer, Room> roomsInGame){
+    public void loadItems(HashMap<Integer, Room> roomsInGame, HashMap<String, Integer> weapons){
         try{
             BufferedReader br = new BufferedReader(new FileReader("itemsInRoom.txt"));
             String text;
@@ -47,6 +47,8 @@ public class LoadingInfo {
                 String[] weapon = line[0].split(";");
                 roomsInGame.get(counter).getItemsInRoom().add(new Weapon(weapon[0], Integer.parseInt(weapon[1])));
                 roomsInGame.get(counter).getItemsInRoom().add(new Coin("coin",Integer.parseInt(line[line.length-1])));
+                weapons.put(weapon[0], Integer.parseInt(weapon[1]));
+
                 for (int i = 1; i < line.length-2; i++) {
                     String[] item = line[i].split(";");
                     roomsInGame.get(counter).getItemsInRoom().add(new LoreItems(item[0], Integer.parseInt(item[1])));

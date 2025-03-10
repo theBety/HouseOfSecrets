@@ -18,9 +18,6 @@ public class Coin extends Item{
 
     @Override
     public String toString() {
-        return "Coin{" +
-                "value=" + value +
-                ", name='" + name + '\'' +
-                '}';
+        return "Name: " + name + " Value: " + value + "\n";
     }
 }

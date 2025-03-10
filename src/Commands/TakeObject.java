@@ -1,15 +1,16 @@
 package Commands;
 
-import Items.Item;
 import Player.Player;
-import World.Room;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class TakeObject extends Command{
+public class TakeObject extends Command {
     protected Player player;
+
     public TakeObject() {
     }
+
     public void setCurrentPosition(Player player) {
         this.player = player;
     }
@@ -18,21 +19,18 @@ public class TakeObject extends Command{
 
     @Override
     public String execute() {
-        try{
-            System.out.println("Items in this room: " + player.getCurrentPosition().getItemsInRoom());
-            System.out.println("Which item do you want to take?\n>> ");
-            String input = sc.next();
-            for(Item item: player.getCurrentPosition().getItemsInRoom()){
-                if(item.equals(input)){
-                    player.getInventory().add(item);
-                    player.getCurrentPosition().getItemsInRoom().remove(item);
-                    return "Your inventory: " + player.getInventory();
-                }
-            }
+        try {
+            System.out.println("Items in this room: \n" + player.getCurrentPosition().getItemsInRoom());
+            System.out.println("Which item do you want to take? Type its sequence number\n>> ");
+            int input = sc.nextInt();
+            player.getInventory().add(player.getCurrentPosition().getItemsInRoom().get(input-1));
+            player.getCurrentPosition().getItemsInRoom().remove(input-1);
+            return "Inventory: " + player.getInventory().toString();
+        } catch (IndexOutOfBoundsException | InputMismatchException e) {
+            return "Invalid Input";
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        return null;
     }
 
     @Override

@@ -7,9 +7,11 @@ import java.util.HashMap;
 
 public class Player {
     private ArrayList<Item> inventory = new ArrayList<>();
+    private HashMap<String, Integer> weapons = new HashMap<>();
     private HashMap<Integer, Room> roomsInGame = new HashMap<>();
     private Room currentPosition;
     private int coins = 0;
+    private boolean gameOver = false;
 
     public Player() {
     }
@@ -47,8 +49,24 @@ public class Player {
     }
 
     public Room setStart(){
-        currentPosition = roomsInGame.get(1);
-        return currentPosition;
+        setCurrentPosition(roomsInGame.get(1));
+        return getCurrentPosition();
+    }
+
+    public HashMap<String, Integer> getWeapons() {
+        return weapons;
+    }
+
+    public void setWeapons(HashMap<String, Integer> weapons) {
+        this.weapons = weapons;
+    }
+
+    public boolean isGameOver() {
+        return gameOver;
+    }
+
+    public void setGameOver(boolean gameOver) {
+        this.gameOver = gameOver;
     }
 
     @Override

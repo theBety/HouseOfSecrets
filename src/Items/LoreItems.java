@@ -18,8 +18,6 @@ public class LoreItems extends Item{
 
     @Override
     public String toString() {
-        return "LoreItems{" +
-                "inWhichRoomIsUsed=" + inWhichRoomIsUsed +
-                '}';
+        return "Name: " + name + " inWhichRoom: " + inWhichRoomIsUsed + "\n";
     }
 }

@@ -9,12 +9,13 @@ public class Settings {
 
     public LoadingInfo loadInfo = new LoadingInfo();
     public Player player = new Player();
+    public TakeObject t1 = new TakeObject();
 
     public void start() {
-        System.out.println(loadInfo.loadMap(player.getRoomsInGame()));
+        System.out.println(loadInfo.loadMap(player.getRoomsInGame(), player.getWeapons()));
         System.out.println(player.setStart());
         //GoTo g = new GoTo();
-        TakeObject t1 = new TakeObject();
+        t1.setCurrentPosition(player);
         System.out.println(t1.execute());
         /*g.setCurrentPosition(player);
         System.out.println(g.execute());

@@ -10,9 +10,9 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 public class GameLoop {
-    private boolean gameOver = false;
     Scanner sc = new Scanner(System.in);
     private HashMap<String, Command> commands = new HashMap<>();
+    protected Player player;
 
     public void initialize(){
         commands.put("Go to", new GoTo());
@@ -26,7 +26,7 @@ public class GameLoop {
     public void gameLoop(){
         do{
             //main game loop.
-        }while(!gameOver);
+        }while(!player.isGameOver());
     }
 
     public void intro(){
@@ -60,14 +60,6 @@ public class GameLoop {
         }
     }
 
-    public boolean isGameOver() {
-        return gameOver;
-    }
-
-    public void setGameOver(boolean gameOver) {
-        this.gameOver = gameOver;
-    }
-
     public HashMap<String, Command> getCommands() {
         return commands;
     }
@@ -79,7 +71,6 @@ public class GameLoop {
     @Override
     public String toString() {
         return "GameLoop{" +
-                "gameOver=" + gameOver +
                 ", commands=" + commands +
                 '}';
     }

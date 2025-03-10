@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Room {
+    //private boolean isLocked;
     private int roomId;
     private String name;
     private String[] availableRooms;
