@@ -25,6 +25,7 @@ public class GameLoop {
 
     public void gameLoop() {
         do {
+
             //main game loop.
         } while (!player.isGameOver());
     }
