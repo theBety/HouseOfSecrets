@@ -13,11 +13,12 @@ public class Settings {
 
     public void start() {
         initialize();
-        //GoTo g = new GoTo();
+        GoTo g = new GoTo();
+        g.setCurrentPosition(player);
+        System.out.println(g.execute());
+        /*
         t1.setCurrentPosition(player);
         System.out.println(t1.execute());
-        /*g.setCurrentPosition(player);
-        System.out.println(g.execute());
         System.out.println("You're now in room " + g.execute());
         loadInfo.setRoom(Integer.parseInt(g.execute()));
         System.out.println(g.execute());

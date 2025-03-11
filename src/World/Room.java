@@ -17,11 +17,12 @@ public class Room {
     private ArrayList<Task> tasksInRoom = new ArrayList<>();
 
 
-    public Room(int roomId, String name, String[] availableRooms, boolean isLocked) {
+    public Room(int roomId, String name, String[] availableRooms, boolean isLocked, int passwordToNextRoom) {
         this.roomId = roomId;
         this.name = name;
         this.availableRooms = availableRooms;
         this.isLocked = isLocked;
+        this.passwordToNextRoom = passwordToNextRoom;
     }
 
     public Room() {
