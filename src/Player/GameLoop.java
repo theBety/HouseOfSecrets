@@ -51,7 +51,8 @@ public class GameLoop {
                                 "There are legends that captain of an old ship had found it in old cave and short after died of an unknown cause.\n" +
                                 "\n" +
                                 "Nick also gave me boxes full of cursed or enchanted objects. Sometimes they give me chills, but I'm not some kind of coward\n" +
-                                "to be scared of few watches, compasses and lighters.\n\033[0m");
+                                "to be scared of few watches, compasses and lighters.\n" +
+                                "P.S. Mountain drawn with white marker.\n\033[0m");
                     System.out.println(text);
                 }
             }

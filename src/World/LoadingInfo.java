@@ -24,7 +24,7 @@ public class LoadingInfo {
                 String[] lines = text.split(";");
                 String[] locationNum = lines[2].split(" ");
                 roomsInGame.put(Integer.parseInt(lines[1]), new Room(Integer.parseInt(lines[1]), lines[0], locationNum,
-                        Boolean.parseBoolean(lines[3]), Integer.parseInt(lines[4])));
+                        Boolean.parseBoolean(lines[3]), Integer.parseInt(lines[4]), lines[5]));
             }
             br.close();
             loadItems(roomsInGame, weapons);

@@ -1,7 +1,6 @@
 package Commands;
 
 import Player.Player;
-
 import java.util.Scanner;
 
 public class Unlock extends Command {
@@ -18,6 +17,7 @@ public class Unlock extends Command {
     @Override
     public String execute() {
         try{
+            System.out.println("Clue: " + player.getCurrentPosition().getPasswordInfo());
             System.out.println("Type in the password.");
             int input = sc.nextInt();
             if(player.getCurrentPosition().getPasswordToNextRoom() == input){
@@ -29,6 +29,7 @@ public class Unlock extends Command {
             return "Something went wrong";
         }
     }
+
 
     @Override
     public boolean exit() {

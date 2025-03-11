@@ -9,6 +9,7 @@ import java.util.Arrays;
 public class Room {
     private boolean isLocked;
     private int passwordToNextRoom;
+    private String passwordInfo;
     private int roomId;
     private String name;
     private String[] availableRooms;
@@ -17,17 +18,19 @@ public class Room {
     private ArrayList<Task> tasksInRoom = new ArrayList<>();
 
 
-    public Room(int roomId, String name, String[] availableRooms, boolean isLocked, int passwordToNextRoom) {
+    public Room(int roomId, String name, String[] availableRooms, boolean isLocked, int passwordToNextRoom, String passwordInfo) {
         this.roomId = roomId;
         this.name = name;
         this.availableRooms = availableRooms;
         this.isLocked = isLocked;
         this.passwordToNextRoom = passwordToNextRoom;
+        this.passwordInfo = passwordInfo;
     }
 
     public Room() {
     }
 
+    //region Set&Get
     public int getRoomId() {
         return roomId;
     }
@@ -84,15 +87,17 @@ public class Room {
         this.name = name;
     }
 
+    //endregion
+
     @Override
     public String toString() {
         return
                 "roomId: " + roomId +
-                ", name: " + name +
-                ", availableRooms: " + Arrays.toString(availableRooms) +
-                ", itemsInRoom: " + itemsInRoom +
-                ", entitiesInRoom: " + entitiesInRoom +
-                "tasksInRoom=" + tasksInRoom +
+                        ", name: " + name +
+                        ", availableRooms: " + Arrays.toString(availableRooms) +
+                        ", itemsInRoom: " + itemsInRoom +
+                        ", entitiesInRoom: " + entitiesInRoom +
+                        "tasksInRoom=" + tasksInRoom +
                         '\n';
     }
 
@@ -102,6 +107,14 @@ public class Room {
 
     public void setTasksInRoom(ArrayList<Task> tasksInRoom) {
         this.tasksInRoom = tasksInRoom;
+    }
+
+    public String getPasswordInfo() {
+        return passwordInfo;
+    }
+
+    public void setPasswordInfo(String passwordInfo) {
+        this.passwordInfo = passwordInfo;
     }
 
     /*
