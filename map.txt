@@ -1,10 +1,10 @@
 bedroom#2:0:6 8:true
-basement:1:2:true
+basement:1:2:false
 hall:2:1 3:true
-living:3:2 9 8 4:true
+living:3:2 9 8 4:false
 kitchen:4:5 3 7:true
 dining:5:4:true
 bathroom#1:6:0:true
-bathroom#2:7:4:true
-gallery:8:3 0:true
-bedroom#1:9:4:true
+bathroom#2:7:4:false
+gallery:8:3 0:false
+bedroom#1:9:4:false

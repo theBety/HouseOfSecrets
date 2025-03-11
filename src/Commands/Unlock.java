@@ -20,7 +20,7 @@ public class Unlock extends Command {
         try{
             System.out.println("Type in the password.");
             int input = sc.nextInt();
-            if(player.getCurrentPosition().getPassword() == input){
+            if(player.getCurrentPosition().getPasswordToNextRoom() == input){
                 player.getCurrentPosition().setLocked(false);
                 return "Room is unlocked.";
             }

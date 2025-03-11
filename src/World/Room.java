@@ -8,7 +8,7 @@ import java.util.Arrays;
 
 public class Room {
     private boolean isLocked;
-    private int password;
+    private int passwordToNextRoom;
     private int roomId;
     private String name;
     private String[] availableRooms;
@@ -17,12 +17,11 @@ public class Room {
     private ArrayList<Task> tasksInRoom = new ArrayList<>();
 
 
-    public Room(int roomId, String name, String[] availableRooms, boolean isLocked, int password) {
+    public Room(int roomId, String name, String[] availableRooms, boolean isLocked) {
         this.roomId = roomId;
         this.name = name;
         this.availableRooms = availableRooms;
         this.isLocked = isLocked;
-        this.password = password;
     }
 
     public Room() {
@@ -72,12 +71,12 @@ public class Room {
         isLocked = locked;
     }
 
-    public int getPassword() {
-        return password;
+    public int getPasswordToNextRoom() {
+        return passwordToNextRoom;
     }
 
-    public void setPassword(int password) {
-        this.password = password;
+    public void setPasswordToNextRoom(int passwordToNextRoom) {
+        this.passwordToNextRoom = passwordToNextRoom;
     }
 
     public void setName(String name) {

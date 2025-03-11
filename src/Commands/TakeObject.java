@@ -1,5 +1,6 @@
 package Commands;
 
+import Items.Coin;
 import Items.Item;
 import Player.Player;
 
@@ -24,12 +25,13 @@ public class TakeObject extends Command {
             System.out.println("Items in this room: \n" + player.getCurrentPosition().getItemsInRoom());
             System.out.println("Which item do you want to take? Type its sequence number\n>> ");
             int input = sc.nextInt();
-            if (player.getCurrentPosition().getItemsInRoom().get(input-1).getName().equals("Coin")) {
-                //nejde mi dostat se k hodnote coinu.
+            if (player.getCurrentPosition().getItemsInRoom().get(input - 1) instanceof Coin coin) {
+                player.setCoins(coin.getValue());
+                return "Inventory: " + player.getInventory().toString() + " Coins: " + player.getCoins();
             }
             player.getInventory().add(player.getCurrentPosition().getItemsInRoom().get(input - 1));
             player.getCurrentPosition().getItemsInRoom().remove(input - 1);
-            return "Inventory: " + player.getInventory().toString();
+            return "Inventory: " + player.getInventory().toString() + " Coins: " + player.getCoins();
         } catch (IndexOutOfBoundsException | InputMismatchException e) {
             return "Invalid Input";
         } catch (Exception e) {
