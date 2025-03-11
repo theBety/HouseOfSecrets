@@ -1,7 +1,6 @@
 package Commands;
 
 import Player.Player;
-import World.Room;
 
 public abstract class Command {
     protected Player player;
@@ -11,5 +10,4 @@ public abstract class Command {
     }
 
     public abstract String execute();
-    public abstract boolean exit();
 }

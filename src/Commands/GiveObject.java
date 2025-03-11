@@ -64,9 +64,4 @@ public class GiveObject extends Command {
             throw new RuntimeException(e);
         }
     }
-
-    @Override
-    public boolean exit() {
-        return false;
-    }
 }

@@ -11,6 +11,9 @@ public class UseObject extends Command {
         this.player = player;
     }
 
+    public UseObject() {
+    }
+
     Scanner sc = new Scanner(System.in);
 
     @Override
@@ -44,10 +47,5 @@ public class UseObject extends Command {
             }
         }
         return -1;
-    }
-
-    @Override
-    public boolean exit() {
-        return false;
     }
 }

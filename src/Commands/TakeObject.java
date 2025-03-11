@@ -1,7 +1,6 @@
 package Commands;
 
 import Items.Coin;
-import Items.Item;
 import Player.Player;
 
 import java.util.InputMismatchException;
@@ -37,10 +36,5 @@ public class TakeObject extends Command {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-    }
-
-    @Override
-    public boolean exit() {
-        return false;
     }
 }

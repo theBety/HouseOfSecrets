@@ -29,10 +29,4 @@ public class Unlock extends Command {
             return "Something went wrong";
         }
     }
-
-
-    @Override
-    public boolean exit() {
-        return false;
-    }
 }

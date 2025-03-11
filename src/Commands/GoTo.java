@@ -13,6 +13,8 @@ public class GoTo extends Command {
         this.player = player;
     }
 
+    public GoTo() {
+    }
     Scanner sc = new Scanner(System.in);
 
     @Override
@@ -36,13 +38,5 @@ public class GoTo extends Command {
         }catch (Exception e) {
             return "Something went wrong";
         }
-    }
-
-    @Override
-    public boolean exit() {
-        return false;
-    }
-
-    public GoTo() {
     }
 }
