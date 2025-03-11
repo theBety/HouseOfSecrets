@@ -1,13 +1,10 @@
 package Commands;
 
-import Items.Item;
 import Player.Player;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class GiveObject extends Command {
-    //TOHLE BY MELO BYT DONE
     protected Player player;
 
     public void setCurrentPosition(Player player) {
@@ -21,19 +18,44 @@ public class GiveObject extends Command {
         try {
             if (player.getCurrentPosition().getName().equals("living")) {
                 System.out.println("He wants flowers for his wife. That is so sweet.");
-                ArrayList<Item> tempList = new ArrayList<>();
 
-                for (int i = 0; i < player.getInventory().size(); i++) {
-                    if (!player.getInventory().get(i).getName().equals("flower") | !player.getInventory().get(i).getName().equals("vase")
-                            | !player.getInventory().get(i).getName().equals("string")) {
-                        tempList.add(player.getInventory().get(i));
-                    }
+                System.out.println("Do you want to give him flowers?");
+                String option = sc.next().toLowerCase();
+                if (option.equals("yes")) {
+                    System.out.println("That's so sweet of you.");
+                } else {
+                    System.out.println("Yes, you do.");
                 }
-                if (tempList.size() + 7 == player.getInventory().size()) {
-                    player.getInventory().clear();
-                    player.getInventory().addAll(tempList);
+                int countOfFlowers = 0;
+                boolean stringFound = false;
+                boolean vaseFound = false;
+                int[] listOfAllIndexes = new int[7];
+                int count = 0;
+
+                for (int i = 0; i < player.getInventory().size(); i++)
+                    switch (player.getInventory().get(i).getName()) {
+                        case "flower" -> {
+                            countOfFlowers++;
+                            listOfAllIndexes[count] = i;
+                            count++;
+                        }
+                        case "string" -> {
+                            stringFound = true;
+                            listOfAllIndexes[count] = i;
+                            count++;
+                        }
+                        case "vase" -> {
+                            vaseFound = true;
+                            listOfAllIndexes[count] = i;
+                            count++;
+                        }
+                    }
+                if (countOfFlowers == 5 && stringFound && vaseFound) {
+                    for (int i = 0; i < 7; i++) {
+                        player.getInventory().remove(listOfAllIndexes[i]);
+                    }
                     return "You gave him all flowers! How sweet of you!";
-                }else{
+                } else {
                     return "You don't have enough flowers!";
                 }
             }
