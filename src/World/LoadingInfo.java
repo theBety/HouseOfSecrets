@@ -4,7 +4,6 @@ import Entities.Entity;
 import Items.Coin;
 import Items.LoreItems;
 import Items.Weapon;
-import Player.Player;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -29,6 +28,7 @@ public class LoadingInfo {
             br.close();
             loadItems(roomsInGame, weapons);
             loadEntities(roomsInGame);
+            loadTasks(roomsInGame);
             System.out.println(roomsInGame);
             return true;
         } catch (IOException e) {
@@ -75,7 +75,34 @@ public class LoadingInfo {
         }
     }
 
-    public void LoadTasks(HashMap<Integer, Room> roomsInGame) {
-
+    public void loadTasks(HashMap<Integer, Room> roomsInGame) {
+        try {
+            BufferedReader br = new BufferedReader(new FileReader("tasksInRooms.txt"));
+            String text;
+            int counter = -1;
+            while ((text = br.readLine()) != null) {
+                counter++;
+                if (counter == 6 | counter == 7 | counter == 9) continue;
+                String[] line = text.split(";");
+                if (counter == 0 | counter == 3 | counter == 4 | counter == 8) {
+                    String[] getClue = line[0].split("%");
+                    String[] theRest = getClue[0].split(":");
+                    roomsInGame.get(counter).getTasksInRoom().add(new Task(theRest[0], theRest[1], getClue[1]));
+                    continue;
+                }
+                if (line.length == 1) {
+                    String[] element = line[0].split(":");
+                    roomsInGame.get(counter).getTasksInRoom().add(new Task(element[0], element[1], null));
+                }
+                if (line.length == 2) {
+                    String[] element = line[0].split(":");
+                    String[] element2 = line[1].split(":");
+                    roomsInGame.get(counter).getTasksInRoom().add(new Task(element[0], element[1], null));
+                    roomsInGame.get(counter).getTasksInRoom().add(new Task(element2[0], element2[1], null));
+                }
+            }
+        } catch (IOException i) {
+            System.err.println("Error loading Items");
+        }
     }
 }

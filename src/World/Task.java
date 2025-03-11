@@ -3,31 +3,30 @@ package World;
 import Items.Item;
 
 public class Task {
-    private Item requiredItem;
+    private String requiredItem;
     private String tasksDescription;
+    private String clueToPassword;
     private boolean isItDone = false;
-    private int passwordFromTask;
 
     public boolean doingTask(){
         //doing task
-        //print des, then input, then check
+        //print description, then input, then check
         return true;
     }
     public Task() {
     }
 
-    public Task(Item requiredItem, String tasksDescription, boolean isItDone, int passwordFromTask) {
+    public Task(String requiredItem, String tasksDescription, String clueToPassword) {
         this.requiredItem = requiredItem;
         this.tasksDescription = tasksDescription;
-        this.isItDone = isItDone;
-        this.passwordFromTask = passwordFromTask;
+        this.clueToPassword = clueToPassword;
     }
 
-    public Item getRequiredItem() {
+    public String getRequiredItem() {
         return requiredItem;
     }
 
-    public void setRequiredItem(Item requiredItem) {
+    public void setRequiredItem(String requiredItem) {
         this.requiredItem = requiredItem;
     }
 
@@ -52,16 +51,14 @@ public class Task {
         return "Task{" +
                 "requiredItem=" + requiredItem +
                 ", tasksDescription='" + tasksDescription + '\'' +
-                ", isItDone=" + isItDone +
-                "passwordFromTask=" + passwordFromTask +
-                '}';
+                ", isItDone=" + isItDone;
     }
 
-    public int getPasswordFromTask() {
-        return passwordFromTask;
+    public String getClueToPassword() {
+        return clueToPassword;
     }
 
-    public void setPasswordFromTask(int passwordFromTask) {
-        this.passwordFromTask = passwordFromTask;
+    public void setClueToPassword(String clueToPassword) {
+        this.clueToPassword = clueToPassword;
     }
 }
