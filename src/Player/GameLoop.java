@@ -24,6 +24,7 @@ public class GameLoop {
     }
 
     public void gameLoop() {
+        intro();
         do {
 
             //main game loop.
@@ -40,7 +41,7 @@ public class GameLoop {
                 if (counter <= 4) {
                     System.out.println(text);
                 } else {
-                    Thread.sleep(3000);
+                    Thread.sleep(20000);
                     System.out.println("""
                             \033[3m
                             Manzanillo 1847

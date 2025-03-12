@@ -1,5 +1,5 @@
 bow;3,feather;8,0
-axe;4,diary;1,400
+axe;4,400
 arrow;2,string;3,flower;3,400
 arrow;2,flower;3,flower;3,0
 knife;2,fork;5,scissors;0,200

@@ -67,8 +67,7 @@ public class LoadingInfo {
             int counter = -1;
             while ((text = br.readLine()) != null) {
                 counter++;
-                String[] line = text.split(";");
-                roomsInGame.get(counter).getEntitiesInRoom().add(new Entity(line[0], line[1]));
+                roomsInGame.get(counter).getEntitiesInRoom().add(new Entity(text));
             }
         } catch (IOException i) {
             System.err.println("Error loading Items");

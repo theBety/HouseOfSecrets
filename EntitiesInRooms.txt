@@ -1,10 +1,10 @@
-Goblin;Oh no! He wants to take something from you!
-null;null
-Fairy;Oh look there's a fairy. She can give you something useful!
-Knight;I have a feeling that someone is following me. That's strange.
-Witch;Do you have better weapon then her?
-Elf;Oh look there's an Elf. She can give you something useful!
-Medusa;Do you have better weapon then her?
-null;null
-Hydras;This thing has five heads, I hope you have 5 arrows.
-Phoenix;He will upgrade your weapon! Hurry!
+Goblin
+null
+Fairy
+Knight
+Witch
+Elf
+Medusa
+null
+Hydras
+Phoenix;

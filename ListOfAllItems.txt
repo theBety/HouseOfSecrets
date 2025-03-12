@@ -1,1 +1,0 @@
-candle,feather,scissors,arrow,string,fabric,fork,pencil,bullets,mirror,paper,wood
