@@ -1,5 +1,5 @@
 scissors:Hmm, how do I open this envelope?%Microsoft
-diary:read
+null
 key:Damn, it’s locked! But where do I find the key?;
 mirror:There’s alot of cabinets. Maybe here could be some kind of code? But where could it be? Probably somewhere under them.%1. Disney
 fork:Omg what is that? The more I’m looking at it the more im feeling the hunger. Can I eat this? But I need something to eat it with.%ARPANET

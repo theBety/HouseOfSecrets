@@ -18,6 +18,6 @@ public class Weapon extends Item{
 
     @Override
     public String toString() {
-        return "Name: " + name + " Rating: " + rating + "\n";
+        return "Name: " + name + " Rating: " + rating;
     }
 }

@@ -3,7 +3,6 @@ package Player;
 import Commands.*;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
@@ -12,22 +11,40 @@ import java.util.Scanner;
 public class GameLoop {
     Scanner sc = new Scanner(System.in);
     private HashMap<String, Command> commands = new HashMap<>();
-    protected Player player;
+    protected Player player = new Player();
+
+    public GameLoop() {
+    }
 
     public void initialize() {
-        commands.put("Go to", new GoTo());
-        commands.put("Give object", new GiveObject());
-        commands.put("Take object", new TakeObject());
-        commands.put("Talk to", new TalkTo());
-        commands.put("Unlock", new Unlock());
-        commands.put("Use object", new UseObject());
+        commands.put("go", new GoTo());
+        commands.put("give", new GiveObject());
+        commands.put("take", new TakeObject());
+        commands.put("talk to", new TalkTo());
+        commands.put("unlock", new Unlock());
+        commands.put("use object", new UseObject());
     }
 
     public void gameLoop() {
+        initialize();
         intro();
+        System.out.println("You're now in room: " + player.getCurrentPosition().getName() + ", with id: " + player.getCurrentPosition().getRoomId());
         do {
+            System.out.println(player.getCurrentPosition().toString());
+            if (player.getCurrentPosition().getEntityInRoom().getName() != null)
+                player.getCurrentPosition().getEntityInRoom().ability();
+            System.out.println("What do you want to do?");
+            System.out.println(commands.keySet());
+            String answer = sc.next().toLowerCase();
+            if (commands.containsKey(answer)) {
+                commands.get(answer).setCurrentPosition(player);
+                System.out.println(commands.get(answer).execute());
+                if (answer.equals("go")) {
 
-            //main game loop.
+                }
+            } else {
+                System.out.println("Invalid input");
+            }
         } while (!player.isGameOver());
     }
 
@@ -38,10 +55,15 @@ public class GameLoop {
             int counter = 0;
             while ((text = br.readLine()) != null) {
                 counter++;
-                if (counter <= 4) {
+                if (counter == 1) {
+                    System.out.println(text);
+                    //Thread.sleep(8000);
+                    continue;
+                }
+                if (counter <= 6) {
                     System.out.println(text);
                 } else {
-                    Thread.sleep(20000);
+                    //Thread.sleep(20000);
                     System.out.println("""
                             \033[3m
                             Manzanillo 1847
@@ -60,9 +82,10 @@ public class GameLoop {
                     System.out.println(text);
                 }
             }
-        } catch (IOException | InterruptedException e) {
+        } catch (IOException e) {
             System.err.println("Error reading story file");
         }
+        //| InterruptedException e
     }
 
     public HashMap<String, Command> getCommands() {
@@ -73,10 +96,12 @@ public class GameLoop {
         this.commands = commands;
     }
 
+    public Player getPlayer() {
+        return player;
+    }
+
     @Override
     public String toString() {
-        return "GameLoop{" +
-                ", commands=" + commands +
-                '}';
+        return "Commands: " + commands;
     }
 }

@@ -18,6 +18,6 @@ public class Coin extends Item{
 
     @Override
     public String toString() {
-        return "Name: " + name + " Value: " + value + "\n";
+        return "Name: " + name;
     }
 }

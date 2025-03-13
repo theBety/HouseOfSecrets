@@ -1,6 +1,5 @@
 package Player;
 
-import Items.Coin;
 import Items.Item;
 import World.Room;
 
@@ -51,9 +50,8 @@ public class Player {
         this.roomsInGame = roomsInGame;
     }
 
-    public Room setStart() {
+    public void setStart() {
         setCurrentPosition(roomsInGame.get(1));
-        return getCurrentPosition();
     }
 
     public HashMap<String, Integer> getWeapons() {
@@ -76,11 +74,6 @@ public class Player {
 
     @Override
     public String toString() {
-        return "Player{" +
-                "inventory=" + inventory +
-                ", roomsInGame=" + roomsInGame +
-                ", currentPosition=" + currentPosition +
-                ", coins=" + coins +
-                '}';
+        return "Inventory: " + inventory + ", coins: " + coins;
     }
 }

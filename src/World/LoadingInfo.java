@@ -4,6 +4,7 @@ import Entities.Entity;
 import Items.Coin;
 import Items.LoreItems;
 import Items.Weapon;
+import Player.Player;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -11,11 +12,12 @@ import java.io.IOException;
 import java.util.HashMap;
 
 public class LoadingInfo {
+    protected Player player;
 
     public LoadingInfo() {
     }
 
-    public boolean loadMap(HashMap<Integer, Room> roomsInGame, HashMap<String, Integer> weapons) {
+    public void loadMap(HashMap<Integer, Room> roomsInGame, HashMap<String, Integer> weapons) {
         try {
             BufferedReader br = new BufferedReader(new FileReader("map.txt"));
             String text;
@@ -29,11 +31,8 @@ public class LoadingInfo {
             loadItems(roomsInGame, weapons);
             loadEntities(roomsInGame);
             loadTasks(roomsInGame);
-            System.out.println(roomsInGame);
-            return true;
         } catch (IOException e) {
             System.err.println(e.getMessage());
-            return false;
         }
     }
 
@@ -67,7 +66,7 @@ public class LoadingInfo {
             int counter = -1;
             while ((text = br.readLine()) != null) {
                 counter++;
-                roomsInGame.get(counter).getEntitiesInRoom().add(new Entity(text));
+                roomsInGame.get(counter).setEntityInRoom(new Entity(text));
             }
         } catch (IOException i) {
             System.err.println("Error loading Items");
@@ -81,9 +80,10 @@ public class LoadingInfo {
             int counter = -1;
             while ((text = br.readLine()) != null) {
                 counter++;
-                if (counter == 6 | counter == 7 | counter == 9) continue;
+                if (counter == 5 | counter == 6 | counter == 8 | counter == 1) continue;
+
                 String[] line = text.split(";");
-                if (counter == 0 | counter == 3 | counter == 4 | counter == 8) {
+                if (counter == 0 | counter == 3 | counter == 4 | counter == 7) {
                     String[] getClue = line[0].split("%");
                     String[] theRest = getClue[0].split(":");
                     roomsInGame.get(counter).getTasksInRoom().add(new Task(theRest[0], theRest[1], getClue[1]));

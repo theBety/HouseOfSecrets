@@ -14,7 +14,7 @@ public class Room {
     private String name;
     private String[] availableRooms;
     private ArrayList<Item> itemsInRoom = new ArrayList<>();
-    private ArrayList<Entity> entitiesInRoom = new ArrayList<>();
+    private Entity entityInRoom = new Entity();
     private ArrayList<Task> tasksInRoom = new ArrayList<>();
 
 
@@ -59,12 +59,12 @@ public class Room {
         this.itemsInRoom = itemsInRoom;
     }
 
-    public ArrayList<Entity> getEntitiesInRoom() {
-        return entitiesInRoom;
+    public Entity getEntityInRoom() {
+        return entityInRoom;
     }
 
-    public void setEntitiesInRoom(ArrayList<Entity> entitiesInRoom) {
-        this.entitiesInRoom = entitiesInRoom;
+    public void setEntityInRoom(Entity entityInRoom) {
+        this.entityInRoom = entityInRoom;
     }
 
     public boolean isLocked() {
@@ -92,13 +92,8 @@ public class Room {
     @Override
     public String toString() {
         return
-                "roomId: " + roomId +
-                        ", name: " + name +
-                        ", availableRooms: " + Arrays.toString(availableRooms) +
-                        ", itemsInRoom: " + itemsInRoom +
-                        ", entitiesInRoom: " + entitiesInRoom +
-                        "tasksInRoom=" + tasksInRoom +
-                        '\n';
+                "Room id: " + roomId + ", name: " + name + ", available rooms: " + Arrays.toString(availableRooms) + ", items InRoom: " + itemsInRoom +
+                        "tasksInRoom; " + tasksInRoom + '\n';
     }
 
     public ArrayList<Task> getTasksInRoom() {

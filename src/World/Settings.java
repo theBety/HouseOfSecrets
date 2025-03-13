@@ -1,24 +1,19 @@
 package World;
 
-import Commands.GiveObject;
-import Commands.GoTo;
-import Commands.TakeObject;
-import Player.Player;
+import Player.GameLoop;
 
-public class Settings {
+public class Settings{
 
-    public LoadingInfo loadInfo = new LoadingInfo();
-    public Player player = new Player();
-    public TakeObject t1 = new TakeObject();
+    LoadingInfo loadInfo = new LoadingInfo();
+    GameLoop gameLoop = new GameLoop();
+
 
     public void start() {
         initialize();
-        GoTo g = new GoTo();
-        g.setCurrentPosition(player);
-        System.out.println(g.execute());
+        gameLoop.gameLoop();
         /*
-        t1.setCurrentPosition(player);
-        System.out.println(t1.execute());
+        takeObject.setCurrentPosition(player);
+        System.out.println(takeObject.execute());
         System.out.println("You're now in room " + g.execute());
         loadInfo.setRoom(Integer.parseInt(g.execute()));
         System.out.println(g.execute());
@@ -28,14 +23,14 @@ public class Settings {
     }
 
     public void initialize(){
-        System.out.println(loadInfo.loadMap(player.getRoomsInGame(), player.getWeapons()));
-        System.out.println(player.setStart());
-        player.getWeapons().put("bow", 3);
-        player.getWeapons().put("axe", 4);
-        player.getWeapons().put("arrow", 2);
-        player.getWeapons().put("knife", 2);
-        player.getWeapons().put("sword", 5);
-        player.getWeapons().put("gun", 6);
+        loadInfo.loadMap(gameLoop.getPlayer().getRoomsInGame(), gameLoop.getPlayer().getWeapons());
+        gameLoop.getPlayer().setStart();
+        gameLoop.getPlayer().getWeapons().put("bow", 3);
+        gameLoop.getPlayer().getWeapons().put("axe", 4);
+        gameLoop.getPlayer().getWeapons().put("arrow", 2);
+        gameLoop.getPlayer().getWeapons().put("knife", 2);
+        gameLoop.getPlayer().getWeapons().put("sword", 5);
+        gameLoop.getPlayer().getWeapons().put("gun", 6);
     }
 
     public Settings() {

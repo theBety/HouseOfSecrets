@@ -1,6 +1,8 @@
 package Commands;
 
 import Player.Player;
+
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Unlock extends Command {
@@ -12,21 +14,42 @@ public class Unlock extends Command {
 
     public Unlock() {
     }
+
     Scanner sc = new Scanner(System.in);
 
     @Override
     public String execute() {
-        try{
+        try {
+            if (player.getCurrentPosition().getRoomId() == 2) {
+                System.out.println("Do you have the key? Yes or no");
+                String yesNo = sc.next().toLowerCase();
+                if (yesNo.equals("yes")) {
+                    for (int i = 0; i < player.getInventory().size(); i++) {
+                        if (player.getInventory().get(i).getName().equals("key")) {
+                            player.getCurrentPosition().setLocked(false);
+                            player.setGameOver(true);
+                            return "YOU DID IT. Now run. Run as fast as you can. And your friends? Well, you will never see them again. Why? because they are DEAD.";
+                        }
+                    }
+                }
+                return "Do you don't";
+            }
             System.out.println("Clue: " + player.getCurrentPosition().getPasswordInfo());
             System.out.println("Type in the password.");
             int input = sc.nextInt();
-            if(player.getCurrentPosition().getPasswordToNextRoom() == input){
-                player.getCurrentPosition().setLocked(false);
+            if (player.getCurrentPosition().getPasswordToNextRoom() == input) {
+                String[] avaRooms = player.getCurrentPosition().getAvailableRooms();
+                for (int i = 0; i < player.getCurrentPosition().getAvailableRooms().length; i++) {
+                    player.getRoomsInGame().get(Integer.parseInt(avaRooms[i])).setLocked(false);
+                }
                 return "Room is unlocked.";
             }
             return "Invalid password.";
-        }catch (Exception e) {
-            return "Something went wrong";
+        } catch (InputMismatchException e) {
+            return "Wrong input";
+        } catch (Exception e) {
+            return e.getMessage();
+            //return "Something went wrong";
         }
     }
 }

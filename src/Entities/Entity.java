@@ -2,12 +2,7 @@ package Entities;
 
 import Items.Weapon;
 import Player.Player;
-import Player.Player;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.Arrays;
 import java.util.InputMismatchException;
 import java.util.Random;
 import java.util.Scanner;
@@ -23,23 +18,24 @@ public class Entity {
     public Entity(String name) {
         this.name = name;
     }
+    public Entity(){}
 
     public void ability() {
         try {
             switch (name) {
                 case "Goblin":
-                    System.out.println("Oh. There's a goblin. You need to give him some item. Choose carefully, losing lore item could mean game over because you" +
-                            "can't clear some task. So which item are you giving him? Type in on which line of your inventory the item is.");
+                    loreText = "Oh. There's a goblin. You need to give him some item. Choose carefully, losing lore item could mean game over because you" +
+                            "can't clear some task. So which item are you giving him? Type in on which line of your inventory the item is.";
                     int input = sc.nextInt();
                     player.getInventory().remove(input);
-                    player.getCurrentPosition().getEntitiesInRoom().clear();
+                    player.getCurrentPosition().setEntityInRoom(null);
                 case "Witch":
                     witchAndMedusa();
                 case "Medusa":
                     witchAndMedusa();
                 case "Hydras":
                     int countOfArrows = 0;
-                    System.out.println("There's Hydras. They have 5 heads.. I need five arrows or else I'm dead.");
+                    loreText = "There's Hydras. They have 5 heads.. I need five arrows or else I'm dead.";
                     for (int i = 0; i < player.getInventory().size(); i++) {
                         if (player.getInventory().get(i).getName().equals("arrow")) {
                             countOfArrows++;
@@ -51,18 +47,18 @@ public class Entity {
                         System.out.println("I'm dead.");
                         player.setGameOver(true);
                     }
-                    player.getCurrentPosition().getEntitiesInRoom().clear();
+                    player.getCurrentPosition().setEntityInRoom(null);
                 case "Fairy":
-                    System.out.println("Oh look there's a fairy. She can give you something useful!");
+                    loreText = "Oh look there's a fairy. She can give you something useful!";
                     player.getInventory().add(new Weapon("arrow", 2));
                 case "Elf":
-                    System.out.println("Oh look there's an elf. She can give you something useful!");
+                    loreText = "Oh look there's an elf. She can give you something useful!";
                     player.getInventory().add(new Weapon("arrow", 2));
                 case "Phoenix":
-                    System.out.println("He will upgrade your weapon! Hurry!");
+                    loreText = "He will upgrade your weapon! Hurry!";
                     sellWeapon();
                 case "Knight":
-                    System.out.println("Someone's following me. I should talk to them.");
+                    loreText = "Someone's following me. I should talk to them.";
                 default:
                     throw new IllegalStateException("Unexpected value: " + name);
             }
@@ -76,8 +72,8 @@ public class Entity {
 
     public void witchAndMedusa() {
         int randomRank = rd.nextInt(5) + 1;
-        System.out.println("OMG that's a Witch. She has weapon of rank " + randomRank + ". Do you have weapon better then her?\n" +
-                "If so, Type in its name. if not, type in 'no'.");
+        loreText = "OMG that's a Witch. She has weapon of rank " + randomRank + ". Do you have weapon better then her?\n"
+                + "If so, Type in its name. if not, type in 'no'.";
         String nameOfWeapon = sc.next().toLowerCase();
         if (nameOfWeapon.equals("no")) {
             System.out.println("Bad for you. She is slowly killing you. You are DEAD. GAME OVER.");
@@ -87,7 +83,7 @@ public class Entity {
             int rankingOfPlayersWeapon = sc.nextInt();
             if (player.getWeapons().get(nameOfWeapon).equals(rankingOfPlayersWeapon)) {
                 System.out.println("You did it!");
-                player.getCurrentPosition().getEntitiesInRoom().clear();
+                player.getCurrentPosition().setEntityInRoom(null);
             } else {
                 System.out.println("Bad for you. She is slowly killing you. You are DEAD. GAME OVER.");
                 player.setGameOver(true);

@@ -18,6 +18,6 @@ public class LoreItems extends Item{
 
     @Override
     public String toString() {
-        return "Name: " + name + " inWhichRoom: " + inWhichRoomIsUsed + "\n";
+        return "Name: " + name;
     }
 }

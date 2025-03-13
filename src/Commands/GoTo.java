@@ -2,6 +2,7 @@ package Commands;
 
 import Player.Player;
 
+import java.util.Arrays;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -20,6 +21,8 @@ public class GoTo extends Command {
     @Override
     public String execute() {
         try {
+            System.out.println("Ids of rooms where you can go: " + Arrays.toString(player.getCurrentPosition().getAvailableRooms()));
+
             System.out.println("Where do you want to go?\n>> ");
             int idOfRoom = sc.nextInt();
             String[] currentAvailableRooms = player.getCurrentPosition().getAvailableRooms();

@@ -1,5 +1,7 @@
 package Player;
+
 import Items.Item;
+
 import java.util.ArrayList;
 
 public class Inventory {
@@ -27,9 +29,6 @@ public class Inventory {
 
     @Override
     public String toString() {
-        return "Inventory{" +
-                "inventory=" + inventory +
-                ", coins=" + coins +
-                '}';
+        return "Inventory: " + inventory + ", coins: " + coins;
     }
 }
