@@ -1,7 +1,13 @@
 package Commands;
 
+import Player.Player;
+
 public class TalkTo extends Command{
     public TalkTo() {
+    }
+
+    public void setCurrentPosition(Player player) {
+        this.player = player;
     }
 
     @Override

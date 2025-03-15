@@ -26,6 +26,7 @@ public class TakeObject extends Command {
             int input = sc.nextInt();
             if (player.getCurrentPosition().getItemsInRoom().get(input - 1) instanceof Coin coin) {
                 player.setCoins(coin.getValue());
+                player.getCurrentPosition().getItemsInRoom().remove(input - 1);
                 return "Inventory: " + player.getInventory().toString() + " Coins: " + player.getCoins();
             }
             player.getInventory().add(player.getCurrentPosition().getItemsInRoom().get(input - 1));

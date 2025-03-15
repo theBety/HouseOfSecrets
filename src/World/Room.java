@@ -89,11 +89,14 @@ public class Room {
 
     //endregion
 
+
     @Override
     public String toString() {
         return
-                "Room id: " + roomId + ", name: " + name + ", available rooms: " + Arrays.toString(availableRooms) + ", items InRoom: " + itemsInRoom +
-                        "tasksInRoom; " + tasksInRoom + '\n';
+                "Room Id: " + roomId +
+                ", Name: " + name +
+                ", Available rooms=" + Arrays.toString(availableRooms) +
+                ", Items in room=" + itemsInRoom;
     }
 
     public ArrayList<Task> getTasksInRoom() {

@@ -26,26 +26,40 @@ public class GameLoop {
     }
 
     public void gameLoop() {
-        initialize();
-        intro();
-        System.out.println("You're now in room: " + player.getCurrentPosition().getName() + ", with id: " + player.getCurrentPosition().getRoomId());
-        do {
-            System.out.println(player.getCurrentPosition().toString());
-            if (player.getCurrentPosition().getEntityInRoom().getName() != null)
-                player.getCurrentPosition().getEntityInRoom().ability();
-            System.out.println("What do you want to do?");
-            System.out.println(commands.keySet());
-            String answer = sc.next().toLowerCase();
-            if (commands.containsKey(answer)) {
-                commands.get(answer).setCurrentPosition(player);
-                System.out.println(commands.get(answer).execute());
-                if (answer.equals("go")) {
+        try {
+            boolean playEntities = true;
+            initialize();
+            intro();
+            System.out.println("You're now in room: " + player.getCurrentPosition().getName() + ", with id: " + player.getCurrentPosition().getRoomId());
+            do {
+                System.out.println("Where you are: " + player.getCurrentPosition().toString());
 
+                if(playEntities){
+                    player.getCurrentPosition().getEntityInRoom().setCurrentPosition(player);
+                    player.getCurrentPosition().getEntityInRoom().ability();
+
+                    if (!player.getCurrentPosition().getTasksInRoom().isEmpty()) {
+                        Thread.sleep(2500);
+                        player.getCurrentPosition().getTasksInRoom().get(0).setCurrentPosition(player);
+                        System.out.println("\n" + player.getCurrentPosition().getTasksInRoom().get(0).getTasksDescription());
+                    }
+                    playEntities = false;
                 }
-            } else {
-                System.out.println("Invalid input");
-            }
-        } while (!player.isGameOver());
+
+                System.out.println("What do you want to do?");
+                System.out.println(commands.keySet());
+                String answer = sc.next().toLowerCase();
+                if (commands.containsKey(answer)) {
+                    commands.get(answer).setCurrentPosition(player);
+                    System.out.println(commands.get(answer).execute());
+                    playEntities = true;
+                } else {
+                    System.out.println("Invalid input");
+                }
+            } while (!player.isGameOver());
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     public void intro() {
@@ -55,12 +69,12 @@ public class GameLoop {
             int counter = 0;
             while ((text = br.readLine()) != null) {
                 counter++;
-                if (counter == 1) {
+                if (counter <= 3) {
                     System.out.println(text);
                     //Thread.sleep(8000);
                     continue;
                 }
-                if (counter <= 6) {
+                if (counter <= 8) {
                     System.out.println(text);
                 } else {
                     //Thread.sleep(20000);

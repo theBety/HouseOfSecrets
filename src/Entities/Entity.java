@@ -12,8 +12,13 @@ public class Entity {
     protected Player player;
     private String name;
     private String loreText;
+    private String loreText2;
 
     Scanner sc = new Scanner(System.in);
+
+    public void setCurrentPosition(Player player) {
+        this.player = player;
+    }
 
     public Entity(String name) {
         this.name = name;
@@ -29,10 +34,13 @@ public class Entity {
                     int input = sc.nextInt();
                     player.getInventory().remove(input);
                     player.getCurrentPosition().setEntityInRoom(null);
+                    break;
                 case "Witch":
                     witchAndMedusa();
+                    break;
                 case "Medusa":
                     witchAndMedusa();
+                    break;
                 case "Hydras":
                     int countOfArrows = 0;
                     loreText = "There's Hydras. They have 5 heads.. I need five arrows or else I'm dead.";
@@ -48,24 +56,39 @@ public class Entity {
                         player.setGameOver(true);
                     }
                     player.getCurrentPosition().setEntityInRoom(null);
+                    break;
                 case "Fairy":
                     loreText = "Oh look there's a fairy. She can give you something useful!";
                     player.getInventory().add(new Weapon("arrow", 2));
+                    loreText2 = "She gave you an arrow!";
+                    break;
                 case "Elf":
-                    loreText = "Oh look there's an elf. She can give you something useful!";
+                    loreText = "Oh look there's an elf. He can give you something useful!";
                     player.getInventory().add(new Weapon("arrow", 2));
+                    loreText2 = "He gave you an arrow!";
+                    break;
                 case "Phoenix":
                     loreText = "He will upgrade your weapon! Hurry!";
                     sellWeapon();
+                    break;
                 case "Knight":
                     loreText = "Someone's following me. I should talk to them.";
-                default:
-                    throw new IllegalStateException("Unexpected value: " + name);
+                    break;
             }
+            if (loreText == null) {
+                System.out.println();
+            }else{
+                System.out.println(loreText);
+                Thread.sleep(2500);
+                System.out.println(loreText2);
+                loreText2 = "";
+                loreText = "";
+            }
+
         } catch (InputMismatchException | IndexOutOfBoundsException e) {
             System.err.println("Wrong input");
         } catch (Exception e) {
-            System.err.println("Somethings wrong");
+            System.out.println(e.getMessage());
         }
 
     }

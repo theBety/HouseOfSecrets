@@ -1,18 +1,20 @@
 package World;
 
-import Items.Item;
+import Player.Player;
 
 public class Task {
     private String requiredItem;
     private String tasksDescription;
     private String clueToPassword;
     private boolean isItDone = false;
+    protected Player player;
 
-    public boolean doingTask(){
-        //doing task
-        //print description, then input, then check
-        return true;
+
+    public void setCurrentPosition(Player player) {
+        this.player = player;
     }
+
+
     public Task() {
     }
 
