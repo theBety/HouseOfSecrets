@@ -46,10 +46,12 @@ public class Unlock extends Command {
             }
             return "Invalid password.";
         } catch (InputMismatchException e) {
-            return "Wrong input";
+            sc.next();
+            return "Invalid Input";
+        } catch (IndexOutOfBoundsException e) {
+            return "Invalid Input";
         } catch (Exception e) {
-            return e.getMessage();
-            //return "Something went wrong";
+            throw new RuntimeException(e);
         }
     }
 }

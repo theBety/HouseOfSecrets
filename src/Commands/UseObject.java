@@ -2,6 +2,7 @@ package Commands;
 
 import Player.Player;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class UseObject extends Command {
@@ -19,6 +20,9 @@ public class UseObject extends Command {
     @Override
     public String execute() {
         try {
+            if(player.getInventory().isEmpty()){
+                return "You don't have any items in your inventory";
+            }
             System.out.println("Enter the name of the object you wish to use:");
             String name = sc.next().toLowerCase();
             int index = findInInventory(name);
@@ -35,8 +39,13 @@ public class UseObject extends Command {
                 return "You can't use this object";
             }
             return "You don't have any such object";
+        } catch (InputMismatchException e) {
+            sc.next();
+            return "Invalid Input";
+        } catch (IndexOutOfBoundsException e) {
+            return "Invalid Input";
         } catch (Exception e) {
-            return "Something went wrong";
+            throw new RuntimeException(e);
         }
     }
 

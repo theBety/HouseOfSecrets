@@ -6,6 +6,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class GameLoop {
@@ -20,9 +21,9 @@ public class GameLoop {
         commands.put("go", new GoTo());
         commands.put("give", new GiveObject());
         commands.put("take", new TakeObject());
-        commands.put("talk to", new TalkTo());
+        commands.put("talk", new TalkTo());
         commands.put("unlock", new Unlock());
-        commands.put("use object", new UseObject());
+        commands.put("use", new UseObject());
     }
 
     public void gameLoop() {
@@ -31,8 +32,10 @@ public class GameLoop {
             initialize();
             intro();
             System.out.println("You're now in room: " + player.getCurrentPosition().getName() + ", with id: " + player.getCurrentPosition().getRoomId());
+
             do {
                 System.out.println("Where you are: " + player.getCurrentPosition().toString());
+                System.out.println("Inventory: " + player.getInventory().toString());
 
                 if(playEntities){
                     player.getCurrentPosition().getEntityInRoom().setCurrentPosition(player);
@@ -55,11 +58,17 @@ public class GameLoop {
                     System.out.println(commands.get(answer).execute());
                     playEntities = true;
                 } else {
+                    sc.next();
                     System.out.println("Invalid input");
                 }
             } while (!player.isGameOver());
+        } catch (InputMismatchException e) {
+            sc.next();
+            System.out.println("Invalid Input");
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("Invalid Input");
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            throw new RuntimeException(e);
         }
     }
 

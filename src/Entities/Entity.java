@@ -35,24 +35,21 @@ public class Entity {
                     player.getInventory().remove(input);
                     player.getCurrentPosition().setEntityInRoom(null);
                     break;
-                case "Witch":
-                    witchAndMedusa();
-                    break;
-                case "Medusa":
+                case "Witch", "Medusa":
                     witchAndMedusa();
                     break;
                 case "Hydras":
                     int countOfArrows = 0;
-                    loreText = "There's Hydras. They have 5 heads.. I need five arrows or else I'm dead.";
+                    loreText = "There's Hydras. They have 4 heads.. I need four arrows or else I'm dead.";
                     for (int i = 0; i < player.getInventory().size(); i++) {
                         if (player.getInventory().get(i).getName().equals("arrow")) {
                             countOfArrows++;
                         }
                     }
-                    if (countOfArrows == 5) {
-                        System.out.println("She's dead.");
+                    if (countOfArrows == 4) {
+                        loreText2 = "She's dead.";
                     } else {
-                        System.out.println("I'm dead.");
+                        loreText2 = "I'm dead.";
                         player.setGameOver(true);
                     }
                     player.getCurrentPosition().setEntityInRoom(null);
@@ -75,7 +72,7 @@ public class Entity {
                     loreText = "Someone's following me. I should talk to them.";
                     break;
             }
-            if (loreText == null) {
+            if ((loreText == null)) {
                 System.out.println();
             }else{
                 System.out.println(loreText);
@@ -83,10 +80,13 @@ public class Entity {
                 System.out.println(loreText2);
                 loreText2 = "";
                 loreText = "";
+                player.getCurrentPosition().getEntityInRoom().setName(null);
             }
 
         } catch (InputMismatchException | IndexOutOfBoundsException e) {
             System.err.println("Wrong input");
+        }catch (NullPointerException e) {
+            System.err.println();
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -138,14 +138,6 @@ public class Entity {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getLoreText() {
-        return loreText;
-    }
-
-    public void setLoreText(String loreText) {
-        this.loreText = loreText;
     }
 
     @Override

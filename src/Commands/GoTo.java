@@ -36,10 +36,13 @@ public class GoTo extends Command {
                 }
             }
             return "You can't go in this room.";
-        } catch (InputMismatchException i) {
-            return "Invalid input.";
-        }catch (Exception e) {
-            return "Something went wrong";
+        } catch (InputMismatchException e) {
+            sc.next();
+            return "Invalid Input";
+        } catch (IndexOutOfBoundsException e) {
+            return "Invalid Input";
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
     }
 }

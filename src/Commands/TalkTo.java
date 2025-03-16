@@ -14,7 +14,7 @@ public class TalkTo extends Command{
     public String execute() {
         if (player.getCurrentPosition().getName().equals("living")){
             return ("Hello, I want to give my beautiful wife some flowers. Could you help me with that?" +
-                    "I need some vase, string to tie up the flowers and of course flowers. Thank you.");
+                    "I need some vase, flowers and string to tie them up. Thank you.");
         }
         return "You can't talk to anyone";
     }
