@@ -21,6 +21,9 @@ public class TakeObject extends Command {
     @Override
     public String execute() {
         try {
+            if (player.getCurrentPosition().getItemsInRoom().isEmpty()) {
+                return "You can't do that";
+            }
             System.out.println("Items in this room: \n" + player.getCurrentPosition().getItemsInRoom());
             System.out.println("Which item do you want to take? Type its sequence number\n>> ");
             int input = sc.nextInt();
@@ -32,7 +35,10 @@ public class TakeObject extends Command {
             player.getInventory().add(player.getCurrentPosition().getItemsInRoom().get(input - 1));
             player.getCurrentPosition().getItemsInRoom().remove(input - 1);
             return "Inventory: " + player.getInventory().toString() + " Coins: " + player.getCoins();
-        } catch (IndexOutOfBoundsException | InputMismatchException e) {
+        } catch (InputMismatchException e) {
+            sc.next();
+            return "Invalid Input";
+        } catch (IndexOutOfBoundsException e) {
             return "Invalid Input";
         } catch (Exception e) {
             throw new RuntimeException(e);

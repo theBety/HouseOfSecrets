@@ -48,6 +48,7 @@ public class GameLoop {
 
                 System.out.println("What do you want to do?");
                 System.out.println(commands.keySet());
+
                 String answer = sc.next().toLowerCase();
                 if (commands.containsKey(answer)) {
                     commands.get(answer).setCurrentPosition(player);
