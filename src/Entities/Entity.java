@@ -27,6 +27,8 @@ public class Entity {
 
     public void ability() {
         try {
+            loreText2 = "";
+            loreText = "";
             switch (name) {
                 case "Goblin":
                     loreText = "Oh. There's a goblin. You need to give him some item. Choose carefully, losing lore item could mean game over because you" +
@@ -80,8 +82,6 @@ public class Entity {
                 System.out.println(loreText);
                 Thread.sleep(2500);
                 System.out.println(loreText2);
-                loreText2 = "";
-                loreText = "";
                 player.getCurrentPosition().getEntityInRoom().setName(null);
             }
 
@@ -144,6 +144,10 @@ public class Entity {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getLoreText2() {
+        return loreText2;
     }
 
     @Override

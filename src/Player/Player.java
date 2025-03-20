@@ -17,6 +17,16 @@ public class Player {
     public Player() {
     }
 
+    public Player(HashMap<Integer, Room> roomsInGame, Room currentPosition, int coins, boolean gameOver) {
+        this.roomsInGame = roomsInGame;
+        this.currentPosition = currentPosition;
+        this.coins = coins;
+        this.gameOver = gameOver;
+    }
+    public void add(ArrayList<Item> a ){
+        inventory = a;
+    }
+
     public ArrayList<Item> getInventory() {
         return inventory;
     }
