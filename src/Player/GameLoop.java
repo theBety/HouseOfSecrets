@@ -27,20 +27,22 @@ public class GameLoop {
     }
 
     public void gameLoop() {
-        try {
-            boolean playEntities = true;
-            initialize();
-            intro();
-            System.out.println("You're now in room: " + player.getCurrentPosition().getName() + ", with id: " + player.getCurrentPosition().getRoomId());
-
-            do {
+        boolean playEntities = true;
+        initialize();
+        intro();
+        System.out.println("You're now in room: " + player.getCurrentPosition().getName() + ", with id: " + player.getCurrentPosition().getRoomId());
+        do {
+            try {
                 System.out.println("Where you are: " + player.getCurrentPosition().toString());
                 System.out.println("Inventory: " + player.getInventory().toString() + "coins: " + player.getCoins());
 
-                if(playEntities){
+                if (playEntities) {
+                    if(player.getCurrentPosition().getEntityInRoom().getName().isEmpty()){
+                        continue;
+                    }
                     player.getCurrentPosition().getEntityInRoom().setCurrentPosition(player);
                     player.getCurrentPosition().getEntityInRoom().ability();
-                    if(player.isGameOver()) {
+                    if (player.isGameOver()) {
                         break;
                     }
 
@@ -50,6 +52,10 @@ public class GameLoop {
                         System.out.println("\n" + player.getCurrentPosition().getTasksInRoom().getFirst().getTasksDescription());
                     }
                     playEntities = false;
+                }
+
+                if (player.getCurrentPosition().getRoomId() == 8) {
+                    System.out.println("lalala");
                 }
 
                 System.out.println("What do you want to do?");
@@ -64,15 +70,14 @@ public class GameLoop {
                     sc.nextLine();
                     System.out.println("Invalid input");
                 }
-            } while (!player.isGameOver());
-        } catch (InputMismatchException e) {
-            sc.nextLine();
-            System.out.println("Invalid Input");
-        } catch (IndexOutOfBoundsException e) {
-            System.out.println("Invalid Input");
-        } catch (Exception e) {
-            System.out.println("Invalid input");
-        }
+            } catch (InputMismatchException | IndexOutOfBoundsException e) {
+                sc.next();
+                System.out.println("Invalid Input 1");
+            } catch (Exception e) {
+                sc.next();
+                System.out.println("Invalid input");
+            }
+        } while (!player.isGameOver());
     }
 
     public void intro() {
