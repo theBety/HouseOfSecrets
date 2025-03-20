@@ -35,16 +35,19 @@ public class GameLoop {
 
             do {
                 System.out.println("Where you are: " + player.getCurrentPosition().toString());
-                System.out.println("Inventory: " + player.getInventory().toString());
+                System.out.println("Inventory: " + player.getInventory().toString() + "coins: " + player.getCoins());
 
                 if(playEntities){
                     player.getCurrentPosition().getEntityInRoom().setCurrentPosition(player);
                     player.getCurrentPosition().getEntityInRoom().ability();
+                    if(player.isGameOver()) {
+                        break;
+                    }
 
                     if (!player.getCurrentPosition().getTasksInRoom().isEmpty()) {
                         Thread.sleep(2500);
-                        player.getCurrentPosition().getTasksInRoom().get(0).setCurrentPosition(player);
-                        System.out.println("\n" + player.getCurrentPosition().getTasksInRoom().get(0).getTasksDescription());
+                        player.getCurrentPosition().getTasksInRoom().getFirst().setCurrentPosition(player);
+                        System.out.println("\n" + player.getCurrentPosition().getTasksInRoom().getFirst().getTasksDescription());
                     }
                     playEntities = false;
                 }
@@ -52,23 +55,23 @@ public class GameLoop {
                 System.out.println("What do you want to do?");
                 System.out.println(commands.keySet());
 
-                String answer = sc.next().toLowerCase();
+                String answer = sc.next().toLowerCase().trim();
                 if (commands.containsKey(answer)) {
                     commands.get(answer).setCurrentPosition(player);
                     System.out.println(commands.get(answer).execute());
                     playEntities = true;
                 } else {
-                    sc.next();
+                    sc.nextLine();
                     System.out.println("Invalid input");
                 }
             } while (!player.isGameOver());
         } catch (InputMismatchException e) {
-            sc.next();
+            sc.nextLine();
             System.out.println("Invalid Input");
         } catch (IndexOutOfBoundsException e) {
             System.out.println("Invalid Input");
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            System.out.println("Invalid input");
         }
     }
 
@@ -109,7 +112,6 @@ public class GameLoop {
         } catch (IOException e) {
             System.err.println("Error reading story file");
         }
-        //| InterruptedException e
     }
 
     public HashMap<String, Command> getCommands() {

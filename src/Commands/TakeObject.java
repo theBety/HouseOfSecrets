@@ -35,10 +35,8 @@ public class TakeObject extends Command {
             player.getInventory().add(player.getCurrentPosition().getItemsInRoom().get(input - 1));
             player.getCurrentPosition().getItemsInRoom().remove(input - 1);
             return "Inventory: " + player.getInventory().toString() + " Coins: " + player.getCoins();
-        } catch (InputMismatchException e) {
+        } catch (InputMismatchException | IndexOutOfBoundsException e) {
             sc.next();
-            return "Invalid Input";
-        } catch (IndexOutOfBoundsException e) {
             return "Invalid Input";
         } catch (Exception e) {
             throw new RuntimeException(e);

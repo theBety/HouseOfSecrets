@@ -46,7 +46,7 @@ public class Entity {
                             countOfArrows++;
                         }
                     }
-                    if (countOfArrows == 4) {
+                    if (countOfArrows >= 4) {
                         loreText2 = "She's dead.";
                     } else {
                         loreText2 = "I'm dead.";
@@ -65,11 +65,13 @@ public class Entity {
                     loreText2 = "He gave you an arrow!";
                     break;
                 case "Phoenix":
-                    loreText = "He will upgrade your weapon! Hurry!";
+                    loreText = " ";
                     sellWeapon();
+                    loreText2 = " ";
                     break;
                 case "Knight":
                     loreText = "Someone's following me. I should talk to them.";
+                    loreText2 = " ";
                     break;
             }
             if ((loreText == null)) {
@@ -116,6 +118,7 @@ public class Entity {
 
     public void sellWeapon() {
         try {
+            System.out.println("He will upgrade your weapon! Hurry!");
             int budget = player.getCoins();
             System.out.println("Which weapon do you want to buy?\n" + player.getWeapons().keySet());
             String name = sc.next().toLowerCase();
@@ -124,6 +127,9 @@ public class Entity {
                 if (budget >= 550) {
                     player.setCoins(-550);
                     player.getInventory().add(new Weapon(name, player.getWeapons().get(name)));
+                    System.out.println("Inventory: " + player.getInventory() + " Coins: " + player.getCoins());
+                }else{
+                    System.out.println("You don't have enough money");
                 }
             }
             player.getWeapons().get(name);

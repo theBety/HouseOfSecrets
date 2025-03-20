@@ -7,4 +7,4 @@ dining;5;4;true;0;null
 bathroom#1;6;0;true;0;null
 bathroom#2;7;4;false;0;null
 gallery;8;3 0;false;1997;feather
-bedroom#1;9;4;false;0;null
+bedroom#1;9;3;false;0;null
