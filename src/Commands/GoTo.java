@@ -45,4 +45,8 @@ public class GoTo extends Command {
             throw new RuntimeException(e);
         }
     }
+
+    public void setSc(Scanner sc) {
+        this.sc = sc;
+    }
 }

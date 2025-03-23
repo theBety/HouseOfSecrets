@@ -3,9 +3,7 @@ package Entities;
 import Items.Weapon;
 import Player.Player;
 
-import java.util.InputMismatchException;
-import java.util.Random;
-import java.util.Scanner;
+import java.util.*;
 
 public class Entity {
     Random rd = new Random();
@@ -31,8 +29,9 @@ public class Entity {
             loreText = "";
             switch (name) {
                 case "Goblin":
-                    loreText = "Oh. There's a goblin. You need to give him some item. Choose carefully, losing lore item could mean game over because you" +
-                            "can't clear some task. So which item are you giving him? Type in on which line of your inventory the item is.";
+                    System.out.println("Oh. There's a goblin. You need to give him some item. Choose carefully, losing lore item could mean game over because you" +
+                            "can't clear some task. So which item are you giving him? Type in on which line of your inventory the item is.");
+                    loreText = " ";
                     int input = sc.nextInt();
                     player.getInventory().remove(input);
                     player.getCurrentPosition().setEntityInRoom(null);
@@ -50,11 +49,12 @@ public class Entity {
                     }
                     if (countOfArrows >= 4) {
                         loreText2 = "She's dead.";
+                        player.getInventory().removeIf(i -> i.getName().equals("arrow"));
                     } else {
                         loreText2 = "I'm dead.";
                         player.setGameOver(true);
                     }
-                    player.getCurrentPosition().setEntityInRoom(null);
+                    player.getCurrentPosition().getEntityInRoom().setName(null);
                     break;
                 case "Fairy":
                     loreText = "Oh look there's a fairy. She can give you something useful!";
@@ -75,14 +75,21 @@ public class Entity {
                     loreText = "Someone's following me. I should talk to them.";
                     loreText2 = " ";
                     break;
+                case "Alonso":
+                    loreText = "Hey, how's it going?";
+                    loreText2 = " ";
+                    break;
             }
-            if ((loreText == null)) {
-                System.out.println();
+            if(Objects.equals(name, " ")){
+                System.out.print("");
+            }
+            if ((loreText.isEmpty())) {
+                System.out.print("");
             }else{
                 System.out.println(loreText);
                 Thread.sleep(2500);
                 System.out.println(loreText2);
-                player.getCurrentPosition().getEntityInRoom().setName(null);
+                player.getCurrentPosition().getEntityInRoom().setName(" ");
             }
 
         } catch (InputMismatchException | IndexOutOfBoundsException e) {

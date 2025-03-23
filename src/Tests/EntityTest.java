@@ -1,5 +1,6 @@
-package Entities;
+package Tests;
 
+import Entities.Entity;
 import Items.Item;
 import Items.LoreItems;
 import Player.Player;
@@ -24,13 +25,17 @@ class EntityTest {
         arrows.add(l);
         arrows.add(l);
         HashMap<Integer, Room> rooms = new HashMap<>();
-        String[] pole = {"0"};
-        rooms.put(8, new Room(8, "gallery", pole, false, 1997, "feather"));
+        String[] availableRooms = {"0"};
+        rooms.put(8, new Room(8, "gallery", availableRooms, false, 1997, "feather"));
         rooms.get(8).setEntityInRoom(new Entity("Hydras"));
         p = new Player(rooms, rooms.get(8), 0, false);
         p.add(arrows);
         entity.setCurrentPosition(p);
         entity.ability();
         assertEquals("She's dead.", entity.getLoreText2());
+    }
+
+    @org.junit.jupiter.api.Test
+    void testAbility() {
     }
 }

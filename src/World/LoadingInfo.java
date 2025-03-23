@@ -49,7 +49,7 @@ public class LoadingInfo {
                 roomsInGame.get(counter).getItemsInRoom().add(new Coin("coin", Integer.parseInt(line[line.length - 1])));
                 weapons.put(weapon[0], Integer.parseInt(weapon[1]));
 
-                for (int i = 1; i < line.length - 2; i++) {
+                for (int i = 1; i < line.length - 1; i++) {
                     String[] item = line[i].split(";");
                     roomsInGame.get(counter).getItemsInRoom().add(new LoreItems(item[0], Integer.parseInt(item[1])));
                 }
@@ -80,10 +80,10 @@ public class LoadingInfo {
             int counter = -1;
             while ((text = br.readLine()) != null) {
                 counter++;
-                if (counter == 5 | counter == 6 | counter == 8 | counter == 1) continue;
+                if (counter == 5 | counter == 6 | counter == 7 | counter == 1| counter == 9) continue;
 
                 String[] line = text.split(";");
-                if (counter == 0 | counter == 3 | counter == 4 | counter == 7) {
+                if (counter == 0 | counter == 3 | counter == 4 | counter == 8) {
                     String[] getClue = line[0].split("%");
                     String[] theRest = getClue[0].split(":");
                     roomsInGame.get(counter).getTasksInRoom().add(new Task(theRest[0], theRest[1], getClue[1]));
@@ -92,12 +92,6 @@ public class LoadingInfo {
                 if (line.length == 1) {
                     String[] element = line[0].split(":");
                     roomsInGame.get(counter).getTasksInRoom().add(new Task(element[0], element[1], null));
-                }
-                if (line.length == 2) {
-                    String[] element = line[0].split(":");
-                    String[] element2 = line[1].split(":");
-                    roomsInGame.get(counter).getTasksInRoom().add(new Task(element[0], element[1], null));
-                    roomsInGame.get(counter).getTasksInRoom().add(new Task(element2[0], element2[1], null));
                 }
             }
         } catch (IOException i) {

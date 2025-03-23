@@ -1,6 +1,7 @@
 package Player;
 
 import Commands.*;
+import Items.Weapon;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -11,7 +12,7 @@ import java.util.Scanner;
 
 public class GameLoop {
     Scanner sc = new Scanner(System.in);
-    private HashMap<String, Command> commands = new HashMap<>();
+    private final HashMap<String, Command> commands = new HashMap<>();
     protected Player player = new Player();
 
     public GameLoop() {
@@ -27,57 +28,52 @@ public class GameLoop {
     }
 
     public void gameLoop() {
-        boolean playEntities = true;
-        initialize();
-        intro();
-        System.out.println("You're now in room: " + player.getCurrentPosition().getName() + ", with id: " + player.getCurrentPosition().getRoomId());
-        do {
-            try {
+        try {
+            boolean playEntities = true;
+            initialize();
+            intro();
+            System.out.println("You're now in room: " + player.getCurrentPosition().getName() + ", with id: " + player.getCurrentPosition().getRoomId());
+
+            player.getInventory().add(new Weapon("arrow", 2));
+            player.getInventory().add(new Weapon("arrow", 2));
+            player.getInventory().add(new Weapon("arrow", 2));
+            player.getInventory().add(new Weapon("arrow", 2));
+            do {
                 System.out.println("Where you are: " + player.getCurrentPosition().toString());
-                System.out.println("Inventory: " + player.getInventory().toString() + "coins: " + player.getCoins());
+                System.out.println("Inventory: " + player.getInventory().toString());
 
                 if (playEntities) {
-                    if(player.getCurrentPosition().getEntityInRoom().getName().isEmpty()){
-                        continue;
-                    }
                     player.getCurrentPosition().getEntityInRoom().setCurrentPosition(player);
                     player.getCurrentPosition().getEntityInRoom().ability();
-                    if (player.isGameOver()) {
-                        break;
-                    }
-
                     if (!player.getCurrentPosition().getTasksInRoom().isEmpty()) {
                         Thread.sleep(2500);
-                        player.getCurrentPosition().getTasksInRoom().getFirst().setCurrentPosition(player);
-                        System.out.println("\n" + player.getCurrentPosition().getTasksInRoom().getFirst().getTasksDescription());
+                        player.getCurrentPosition().getTasksInRoom().get(0).setCurrentPosition(player);
+                        System.out.println("\n" + player.getCurrentPosition().getTasksInRoom().get(0).getTasksDescription());
                     }
                     playEntities = false;
-                }
-
-                if (player.getCurrentPosition().getRoomId() == 8) {
-                    System.out.println("lalala");
                 }
 
                 System.out.println("What do you want to do?");
                 System.out.println(commands.keySet());
 
-                String answer = sc.next().toLowerCase().trim();
+                String answer = sc.next().toLowerCase();
                 if (commands.containsKey(answer)) {
                     commands.get(answer).setCurrentPosition(player);
                     System.out.println(commands.get(answer).execute());
                     playEntities = true;
                 } else {
-                    sc.nextLine();
+                    sc.next();
                     System.out.println("Invalid input");
                 }
-            } catch (InputMismatchException | IndexOutOfBoundsException e) {
-                sc.next();
-                System.out.println("Invalid Input 1");
-            } catch (Exception e) {
-                sc.next();
-                System.out.println("Invalid input");
-            }
-        } while (!player.isGameOver());
+            } while (!player.isGameOver());
+        } catch (InputMismatchException e) {
+            sc.next();
+            System.out.println("Invalid Input");
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("Invalid Input");
+        } catch (Exception e) {
+            System.out.print("");
+        }
     }
 
     public void intro() {
@@ -117,14 +113,6 @@ public class GameLoop {
         } catch (IOException e) {
             System.err.println("Error reading story file");
         }
-    }
-
-    public HashMap<String, Command> getCommands() {
-        return commands;
-    }
-
-    public void setCommands(HashMap<String, Command> commands) {
-        this.commands = commands;
     }
 
     public Player getPlayer() {

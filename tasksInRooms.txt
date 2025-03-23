@@ -5,5 +5,6 @@ mirror:There’s alot of cabinets. Maybe here could be some kind of code? But wh
 fork:Omg what is this food? The more I’m looking at it the more im feeling the hunger. Can I eat this? But I need something to eat it with.%ARPANET
 null
 null
+null
 feather:Ohh, this painting is covered in dust. I need something to clean it with.%PHILOSOPHER’S STONE
 null

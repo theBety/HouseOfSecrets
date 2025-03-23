@@ -8,14 +8,14 @@ import java.util.Arrays;
 
 public class Room {
     private boolean isLocked;
-    private int passwordToNextRoom;
-    private String passwordInfo;
-    private int roomId;
-    private String name;
-    private String[] availableRooms;
-    private ArrayList<Item> itemsInRoom = new ArrayList<>();
+    private final int passwordToNextRoom;
+    private final String passwordInfo;
+    private final int roomId;
+    private final String name;
+    private final String[] availableRooms;
+    private final ArrayList<Item> itemsInRoom = new ArrayList<>();
     private Entity entityInRoom = new Entity();
-    private ArrayList<Task> tasksInRoom = new ArrayList<>();
+    private final ArrayList<Task> tasksInRoom = new ArrayList<>();
 
 
     public Room(int roomId, String name, String[] availableRooms, boolean isLocked, int passwordToNextRoom, String passwordInfo) {
@@ -27,16 +27,10 @@ public class Room {
         this.passwordInfo = passwordInfo;
     }
 
-    public Room() {
-    }
 
     //region Set&Get
     public int getRoomId() {
         return roomId;
-    }
-
-    public void setRoomId(int roomId) {
-        this.roomId = roomId;
     }
 
     public String getName() {
@@ -47,16 +41,8 @@ public class Room {
         return availableRooms;
     }
 
-    public void setAvailableRooms(String[] availableRooms) {
-        this.availableRooms = availableRooms;
-    }
-
     public ArrayList<Item> getItemsInRoom() {
         return itemsInRoom;
-    }
-
-    public void setItemsInRoom(ArrayList<Item> itemsInRoom) {
-        this.itemsInRoom = itemsInRoom;
     }
 
     public Entity getEntityInRoom() {
@@ -79,12 +65,8 @@ public class Room {
         return passwordToNextRoom;
     }
 
-    public void setPasswordToNextRoom(int passwordToNextRoom) {
-        this.passwordToNextRoom = passwordToNextRoom;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+    public String getPasswordInfo() {
+        return passwordInfo;
     }
 
     //endregion
@@ -101,18 +83,6 @@ public class Room {
 
     public ArrayList<Task> getTasksInRoom() {
         return tasksInRoom;
-    }
-
-    public void setTasksInRoom(ArrayList<Task> tasksInRoom) {
-        this.tasksInRoom = tasksInRoom;
-    }
-
-    public String getPasswordInfo() {
-        return passwordInfo;
-    }
-
-    public void setPasswordInfo(String passwordInfo) {
-        this.passwordInfo = passwordInfo;
     }
 
     /*

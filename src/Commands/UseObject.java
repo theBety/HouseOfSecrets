@@ -33,7 +33,7 @@ public class UseObject extends Command {
                         String answer = player.getCurrentPosition().getTasksInRoom().get(i).getClueToPassword();
                         player.getCurrentPosition().getTasksInRoom().remove(i);
                         player.getInventory().remove(index);
-                        return "There’s something written. It looks like some kind of code clue" + answer;
+                        return "There’s something written. It looks like some kind of code clue: " + answer;
                     }
                 }
                 return "You can't use this object";
