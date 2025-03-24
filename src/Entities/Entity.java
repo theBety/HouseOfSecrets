@@ -14,6 +14,9 @@ public class Entity {
 
     Scanner sc = new Scanner(System.in);
 
+    /**
+     * Sets current room players in (With what room program works);
+     */
     public void setCurrentPosition(Player player) {
         this.player = player;
     }
@@ -21,8 +24,13 @@ public class Entity {
     public Entity(String name) {
         this.name = name;
     }
-    public Entity(){}
 
+    public Entity() {
+    }
+
+    /**
+     * Based on name of the Entity, method prints some text and plays other methods/functions.
+     */
     public void ability() {
         try {
             loreText2 = "";
@@ -30,10 +38,15 @@ public class Entity {
             switch (name) {
                 case "Goblin":
                     System.out.println("Oh. There's a goblin. You need to give him some item. Choose carefully, losing lore item could mean game over because you" +
-                            "can't clear some task. So which item are you giving him? Type in on which line of your inventory the item is.");
+                            "can't clear some task.\nSo which item are you giving him? Type in on which position of your inventory the item is.");
                     loreText = " ";
+                    if (player.getInventory().isEmpty()) {
+                        System.out.println("You don't have any items. Well, You're dead.");
+                        player.setGameOver(true);
+                        break;
+                    }
                     int input = sc.nextInt();
-                    player.getInventory().remove(input);
+                    player.getInventory().remove(input - 1);
                     player.getCurrentPosition().setEntityInRoom(null);
                     break;
                 case "Witch", "Medusa":
@@ -80,12 +93,12 @@ public class Entity {
                     loreText2 = " ";
                     break;
             }
-            if(Objects.equals(name, " ")){
+            if (Objects.equals(name, " ")) {
                 System.out.print("");
             }
             if ((loreText.isEmpty())) {
                 System.out.print("");
-            }else{
+            } else {
                 System.out.println(loreText);
                 Thread.sleep(2500);
                 System.out.println(loreText2);
@@ -94,7 +107,7 @@ public class Entity {
 
         } catch (InputMismatchException | IndexOutOfBoundsException e) {
             System.err.println("Wrong input");
-        }catch (NullPointerException e) {
+        } catch (NullPointerException e) {
             System.err.println();
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -102,6 +115,10 @@ public class Entity {
 
     }
 
+    /**
+     * If the name of the Entity is witch/medusa this method is played. It just prints another text and checks if player has some better
+     * weapon then witch/medusa.
+     */
     public void witchAndMedusa() {
         int randomRank = rd.nextInt(5) + 1;
         loreText = "OMG that's a Witch. She has weapon of rank " + randomRank + ". Do you have weapon better then her?\n"
@@ -123,6 +140,10 @@ public class Entity {
         }
     }
 
+    /**
+     * If phoenix is in a room, this method is called. If player has 550+ coins, they can buy some weapon. This method solves the logic
+     * of selling the weapon.
+     */
     public void sellWeapon() {
         try {
             System.out.println("He will upgrade your weapon! Hurry!");
@@ -135,7 +156,7 @@ public class Entity {
                     player.setCoins(-550);
                     player.getInventory().add(new Weapon(name, player.getWeapons().get(name)));
                     System.out.println("Inventory: " + player.getInventory() + " Coins: " + player.getCoins());
-                }else{
+                } else {
                     System.out.println("You don't have enough money");
                 }
             }

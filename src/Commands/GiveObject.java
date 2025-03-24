@@ -13,6 +13,11 @@ public class GiveObject extends Command {
 
     Scanner sc = new Scanner(System.in);
 
+    /**
+     * NPC wants flowers, string and vase. Method checks if player has everything they need in order to finish this task.
+     * if so, the task is completed.
+     * @return if player successfully completed the task.
+     */
     @Override
     public String execute() {
         try {
@@ -29,31 +34,18 @@ public class GiveObject extends Command {
                 int countOfFlowers = 0;
                 boolean stringFound = false;
                 boolean vaseFound = false;
-                int[] listOfAllIndexes = new int[7];
-                int count = 0;
 
-                for (int i = 0; i < player.getInventory().size(); i++)
+                for (int i = 0; i < player.getInventory().size(); i++) {
                     switch (player.getInventory().get(i).getName()) {
-                        case "flower" -> {
-                            countOfFlowers++;
-                            listOfAllIndexes[count] = i;
-                            count++;
-                        }
-                        case "string" -> {
-                            stringFound = true;
-                            listOfAllIndexes[count] = i;
-                            count++;
-                        }
-                        case "vase" -> {
-                            vaseFound = true;
-                            listOfAllIndexes[count] = i;
-                            count++;
-                        }
+                        case "flower" -> countOfFlowers++;
+                        case "string" -> stringFound = true;
+                        case "vase" -> vaseFound = true;
                     }
+                }
                 if (countOfFlowers == 5 && stringFound && vaseFound) {
-                    for (int i = 0; i < 7; i++) {
-                        player.getInventory().remove(listOfAllIndexes[i]);
-                    }
+                    player.getInventory().removeIf(i -> i.getName().equals("flower"));
+                    player.getInventory().removeIf(i -> i.getName().equals("string"));
+                    player.getInventory().removeIf(i -> i.getName().equals("vase"));
                     return "You gave him all flowers! How sweet of you!";
                 } else {
                     return "You don't have enough flowers!";
@@ -63,5 +55,9 @@ public class GiveObject extends Command {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public void setSc(Scanner sc) {
+        this.sc = sc;
     }
 }

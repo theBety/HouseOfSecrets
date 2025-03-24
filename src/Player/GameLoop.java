@@ -1,6 +1,7 @@
 package Player;
 
 import Commands.*;
+import Items.LoreItems;
 import Items.Weapon;
 
 import java.io.BufferedReader;
@@ -38,6 +39,14 @@ public class GameLoop {
             player.getInventory().add(new Weapon("arrow", 2));
             player.getInventory().add(new Weapon("arrow", 2));
             player.getInventory().add(new Weapon("arrow", 2));
+            player.getInventory().add(new LoreItems("flower", 3));
+            player.getInventory().add(new LoreItems("flower", 3));
+            player.getInventory().add(new LoreItems("flower", 3));
+            player.getInventory().add(new LoreItems("flower", 3));
+            player.getInventory().add(new LoreItems("flower", 3));
+            player.getInventory().add(new LoreItems("vase", 3));
+            player.getInventory().add(new LoreItems("string", 3));
+
             do {
                 System.out.println("Where you are: " + player.getCurrentPosition().toString());
                 System.out.println("Inventory: " + player.getInventory().toString());

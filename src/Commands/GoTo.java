@@ -18,6 +18,10 @@ public class GoTo extends Command {
     }
     Scanner sc = new Scanner(System.in);
 
+    /**
+     * Checks, if doors to next room are locked, if not, checks if player can go to this room (If these rooms are next to each-other).
+     * @return Did player successfully enter another room?
+     */
     @Override
     public String execute() {
         try {
