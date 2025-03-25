@@ -17,22 +17,22 @@ public class Unlock extends Command {
 
     Scanner sc = new Scanner(System.in);
 
+    /**
+     * Unlocks door to player if they have the right password or key.
+     * @return if player unlocked the door
+     */
     @Override
     public String execute() {
         try {
             if (player.getCurrentPosition().getRoomId() == 2) {
-                System.out.println("Do you have the key? Yes or no");
-                String yesNo = sc.next().toLowerCase();
-                if (yesNo.equals("yes")) {
-                    for (int i = 0; i < player.getInventory().size(); i++) {
-                        if (player.getInventory().get(i).getName().equals("key")) {
-                            player.getCurrentPosition().setLocked(false);
-                            player.setGameOver(true);
-                            return "YOU DID IT. Now run. Run as fast as you can. And your friends? Well, you will never see them again. Why? because they are DEAD.";
-                        }
+                for (int i = 0; i < player.getInventory().size(); i++) {
+                    if (player.getInventory().get(i).getName().equals("key")) {
+                        player.getCurrentPosition().setLocked(false);
+                        player.setGameOver(true);
+                        return "YOU DID IT. Now run. Run as fast as you can. And your friends? Well, you will never see them again. Why? because they are DEAD.";
                     }
                 }
-                return "Do you don't";
+                return "You don't have the key";
             }
             System.out.println("Clue: " + player.getCurrentPosition().getPasswordInfo());
             System.out.println("Type in the password.");
@@ -53,5 +53,9 @@ public class Unlock extends Command {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public void setSc(Scanner sc) {
+        this.sc = sc;
     }
 }

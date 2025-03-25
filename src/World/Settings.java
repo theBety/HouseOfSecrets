@@ -11,15 +11,6 @@ public class Settings{
     public void start() {
         initialize();
         gameLoop.gameLoop();
-        /*
-        takeObject.setCurrentPosition(player);
-        System.out.println(takeObject.execute());
-        System.out.println("You're now in room " + g.execute());
-        loadInfo.setRoom(Integer.parseInt(g.execute()));
-        System.out.println(g.execute());
-        System.out.println(g.execute());
-        GameLoop gl = new GameLoop();
-        gl.intro();*/
     }
 
     public void initialize(){
@@ -34,9 +25,5 @@ public class Settings{
     }
 
     public Settings() {
-    }
-
-    public LoadingInfo getLoadInfo() {
-        return loadInfo;
     }
 }

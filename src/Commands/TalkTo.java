@@ -10,6 +10,10 @@ public class TalkTo extends Command{
         super.setCurrentPosition(player);
     }
 
+    /**
+     * If players location is in living room, they can talk to knight.
+     * @return Conversation with knight if player is in living room.
+     */
     @Override
     public String execute() {
         try{
