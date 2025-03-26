@@ -19,6 +19,9 @@ public class GameLoop {
     public GameLoop() {
     }
 
+    /**
+     * initialize commands.
+     */
     public void initialize() {
         commands.put("go", new GoTo());
         commands.put("give", new GiveObject());
@@ -28,6 +31,9 @@ public class GameLoop {
         commands.put("use", new UseObject());
     }
 
+    /**
+     * Main game loop.
+     */
     public void gameLoop() {
         try {
             boolean playEntities = true;
@@ -85,6 +91,9 @@ public class GameLoop {
         }
     }
 
+    /**
+     * Intro of a game. Letter and instructions for player.
+     */
     public void intro() {
         try {
             BufferedReader br = new BufferedReader(new FileReader("ReadingStory.txt"));

@@ -17,6 +17,10 @@ public class UseObject extends Command {
 
     Scanner sc = new Scanner(System.in);
 
+    /**
+     * Player using some item in task.
+     * @return  if he used it or not. If so, it gives him clue to the password.
+     */
     @Override
     public String execute() {
         try {
@@ -56,5 +60,9 @@ public class UseObject extends Command {
             }
         }
         return -1;
+    }
+
+    public void setSc(Scanner sc) {
+        this.sc = sc;
     }
 }

@@ -8,7 +8,7 @@ import java.util.HashMap;
 
 public class Player {
     private ArrayList<Item> inventory = new ArrayList<>();
-    private HashMap<String, Integer> weapons = new HashMap<>();
+    private final HashMap<String, Integer> weapons = new HashMap<>();
     private HashMap<Integer, Room> roomsInGame = new HashMap<>();
     private Room currentPosition;
     private int coins = 0;
@@ -23,7 +23,8 @@ public class Player {
         this.coins = coins;
         this.gameOver = gameOver;
     }
-    public void add(ArrayList<Item> a ){
+
+    public void add(ArrayList<Item> a) {
         inventory = a;
     }
 
@@ -32,9 +33,6 @@ public class Player {
     }
 
     //region Set&Get
-    public void setInventory(ArrayList<Item> inventory) {
-        this.inventory = inventory;
-    }
 
     public int getCoins() {
         return coins;
@@ -56,20 +54,12 @@ public class Player {
         return roomsInGame;
     }
 
-    public void setRoomsInGame(HashMap<Integer, Room> roomsInGame) {
-        this.roomsInGame = roomsInGame;
-    }
-
     public void setStart() {
         setCurrentPosition(roomsInGame.get(1));
     }
 
     public HashMap<String, Integer> getWeapons() {
         return weapons;
-    }
-
-    public void setWeapons(HashMap<String, Integer> weapons) {
-        this.weapons = weapons;
     }
 
     public boolean isGameOver() {

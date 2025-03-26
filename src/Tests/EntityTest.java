@@ -5,6 +5,8 @@ import Items.Item;
 import Items.LoreItems;
 import Player.Player;
 import World.Room;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,26 +18,32 @@ class EntityTest {
     LoreItems l = new LoreItems("arrow", 8);
     Player p;
 
-    @org.junit.jupiter.api.Test
-    void ability() {
+    @BeforeEach
+    void setUp() {
+        HashMap<Integer, Room> rooms = new HashMap<>();
+        String[] availableRooms = {"0"};
+        rooms.put(8, new Room(8, "gallery", availableRooms, false, 1997, "feather"));
+        rooms.get(8).setEntityInRoom(new Entity("Hydras"));
+        p = new Player(rooms, rooms.get(8), 0, false);
+        entity.setCurrentPosition(p);
+    }
+
+
+    @Test
+    void deadHydras() {
         ArrayList<Item> arrows = new ArrayList<>();
         arrows.add(l);
         arrows.add(l);
         arrows.add(l);
         arrows.add(l);
         arrows.add(l);
-        HashMap<Integer, Room> rooms = new HashMap<>();
-        String[] availableRooms = {"0"};
-        rooms.put(8, new Room(8, "gallery", availableRooms, false, 1997, "feather"));
-        rooms.get(8).setEntityInRoom(new Entity("Hydras"));
-        p = new Player(rooms, rooms.get(8), 0, false);
         p.add(arrows);
-        entity.setCurrentPosition(p);
         entity.ability();
         assertEquals("She's dead.", entity.getLoreText2());
     }
-
-    @org.junit.jupiter.api.Test
-    void testAbility() {
+    @Test
+    void deadPlayer() {
+        entity.ability();
+        assertEquals("I'm dead.", entity.getLoreText2());
     }
 }

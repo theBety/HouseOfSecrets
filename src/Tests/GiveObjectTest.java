@@ -37,6 +37,7 @@ class GiveObjectTest {
         p.getInventory().add(new LoreItems("vase", 3));
         p.getInventory().add(new LoreItems("string", 3));
     }
+
     void setUpWrong() {
         p.getInventory().add(new LoreItems("flower", 3));
         p.getInventory().add(new LoreItems("flower", 3));
@@ -50,7 +51,6 @@ class GiveObjectTest {
         System.setIn(new ByteArrayInputStream(input.getBytes()));
         Scanner scanner = new Scanner(System.in);
         g.setSc(scanner);
-        setUp();
         setUpRight();
         String answer = g.execute();
         assertEquals("You gave him all flowers! How sweet of you!", answer);
@@ -63,7 +63,6 @@ class GiveObjectTest {
         System.setIn(new ByteArrayInputStream(input.getBytes()));
         Scanner scanner = new Scanner(System.in);
         g.setSc(scanner);
-        setUp();
         setUpWrong();
         String answer = g.execute();
         assertEquals("You don't have enough flowers!", answer);

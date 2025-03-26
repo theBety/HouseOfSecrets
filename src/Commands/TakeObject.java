@@ -18,6 +18,10 @@ public class TakeObject extends Command {
 
     Scanner sc = new Scanner(System.in);
 
+    /**
+     * Player taking an item.
+     * @return players inventory if he took it.
+     */
     @Override
     public String execute() {
         try {

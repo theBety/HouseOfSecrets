@@ -17,7 +17,11 @@ public class LoadingInfo {
     public LoadingInfo() {
     }
 
-    public void loadMap(HashMap<Integer, Room> roomsInGame, HashMap<String, Integer> weapons) {
+    /**
+     * loads map - rooms and all of their info.
+     * @param roomsInGame hashmap where the rooms are stored.
+     */
+    public void loadMap(HashMap<Integer, Room> roomsInGame) {
         try {
             BufferedReader br = new BufferedReader(new FileReader("map.txt"));
             String text;
@@ -28,7 +32,7 @@ public class LoadingInfo {
                         Boolean.parseBoolean(lines[3]), Integer.parseInt(lines[4]), lines[5]));
             }
             br.close();
-            loadItems(roomsInGame, weapons);
+            loadItems(roomsInGame);
             loadEntities(roomsInGame);
             loadTasks(roomsInGame);
         } catch (IOException e) {
@@ -36,7 +40,11 @@ public class LoadingInfo {
         }
     }
 
-    public void loadItems(HashMap<Integer, Room> roomsInGame, HashMap<String, Integer> weapons) {
+    /**
+     * Loads all items in different rooms.
+     * @param roomsInGame hashmap where the rooms are stored.
+     */
+    public void loadItems(HashMap<Integer, Room> roomsInGame) {
         try {
             BufferedReader br = new BufferedReader(new FileReader("itemsInRoom.txt"));
             String text;
@@ -47,8 +55,6 @@ public class LoadingInfo {
                 String[] weapon = line[0].split(";");
                 roomsInGame.get(counter).getItemsInRoom().add(new Weapon(weapon[0], Integer.parseInt(weapon[1])));
                 roomsInGame.get(counter).getItemsInRoom().add(new Coin("coin", Integer.parseInt(line[line.length - 1])));
-                weapons.put(weapon[0], Integer.parseInt(weapon[1]));
-
                 for (int i = 1; i < line.length - 1; i++) {
                     String[] item = line[i].split(";");
                     roomsInGame.get(counter).getItemsInRoom().add(new LoreItems(item[0], Integer.parseInt(item[1])));
@@ -59,6 +65,10 @@ public class LoadingInfo {
         }
     }
 
+    /**
+     * Loads all Entities in different rooms.
+     * @param roomsInGame hashmap where the rooms are stored.
+     */
     public void loadEntities(HashMap<Integer, Room> roomsInGame) {
         try {
             BufferedReader br = new BufferedReader(new FileReader("EntitiesInRooms.txt"));
@@ -73,6 +83,10 @@ public class LoadingInfo {
         }
     }
 
+    /**
+     * Loads all Tasks in different rooms.
+     * @param roomsInGame hashmap where the rooms are stored.
+     */
     public void loadTasks(HashMap<Integer, Room> roomsInGame) {
         try {
             BufferedReader br = new BufferedReader(new FileReader("tasksInRooms.txt"));

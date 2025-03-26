@@ -159,6 +159,8 @@ public class Entity {
                 } else {
                     System.out.println("You don't have enough money");
                 }
+            }else{
+                System.out.println("There's no such a item. Your lost. Now you can't buy anything.");
             }
             player.getWeapons().get(name);
         } catch (Exception e) {

@@ -1,5 +1,6 @@
-package Commands;
+package Tests;
 
+import Commands.Unlock;
 import Items.LoreItems;
 import Player.Player;
 import World.Room;
