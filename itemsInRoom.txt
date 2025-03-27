@@ -1,10 +1,10 @@
-bow;3,0
+bow;3,scissors;0,0
 axe;4,400
 arrow;2,string;3,flower;3,400
 arrow;2,flower;3,flower;3,0
-knife;2,fork;5,scissors;0,200
-arrow;2,flower;3,500
-arrow;2,mirror;3,key;2,flower;3,50
+knife;2,fork;5,200
+arrow;2,flower;3,key;2,500
+arrow;2,mirror;3,flower;3,50
 arrow;2,flower;3,0
 sword;5,vase;3,feather;8,450
 gun;6,flower;3,100

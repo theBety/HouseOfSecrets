@@ -77,8 +77,8 @@ public class Room {
         return
                 "Room Id: " + roomId +
                 ", Name: " + name +
-                ", Available rooms=" + Arrays.toString(availableRooms) +
-                ", Items in room=" + itemsInRoom;
+                ", Available rooms: " + Arrays.toString(availableRooms) +
+                ", Items in room: " + itemsInRoom;
     }
 
     public ArrayList<Task> getTasksInRoom() {

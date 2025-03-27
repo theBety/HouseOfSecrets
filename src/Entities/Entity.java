@@ -39,15 +39,14 @@ public class Entity {
                 case "Goblin":
                     System.out.println("Oh. There's a goblin. You need to give him some item. Choose carefully, losing lore item could mean game over because you" +
                             "can't clear some task.\nSo which item are you giving him? Type in on which position of your inventory the item is.");
-                    loreText = " ";
                     if (player.getInventory().isEmpty()) {
                         System.out.println("You don't have any items. Well, You're dead.");
                         player.setGameOver(true);
                         break;
                     }
+                    loreText = "Okay, I hope I'm okay";
                     int input = sc.nextInt();
                     player.getInventory().remove(input - 1);
-                    player.getCurrentPosition().setEntityInRoom(null);
                     break;
                 case "Witch", "Medusa":
                     witchAndMedusa();
@@ -67,7 +66,6 @@ public class Entity {
                         loreText2 = "I'm dead.";
                         player.setGameOver(true);
                     }
-                    player.getCurrentPosition().getEntityInRoom().setName(null);
                     break;
                 case "Fairy":
                     loreText = "Oh look there's a fairy. She can give you something useful!";
@@ -80,31 +78,19 @@ public class Entity {
                     loreText2 = "He gave you an arrow!";
                     break;
                 case "Phoenix":
-                    loreText = " ";
                     sellWeapon();
-                    loreText2 = " ";
                     break;
                 case "Knight":
                     loreText = "Someone's following me. I should talk to them.";
-                    loreText2 = " ";
                     break;
                 case "Alonso":
                     loreText = "Hey, how's it going?";
-                    loreText2 = " ";
                     break;
             }
-            if (Objects.equals(name, " ")) {
-                System.out.print("");
-            }
-            if ((loreText.isEmpty())) {
-                System.out.print("");
-            } else {
                 System.out.println(loreText);
                 Thread.sleep(2500);
                 System.out.println(loreText2);
                 player.getCurrentPosition().getEntityInRoom().setName(" ");
-            }
-
         } catch (InputMismatchException | IndexOutOfBoundsException e) {
             System.err.println("Wrong input");
         } catch (NullPointerException e) {
@@ -121,8 +107,8 @@ public class Entity {
      */
     public void witchAndMedusa() {
         int randomRank = rd.nextInt(5) + 1;
-        loreText = "OMG that's a Witch. She has weapon of rank " + randomRank + ". Do you have weapon better then her?\n"
-                + "If so, Type in its name. if not, type in 'no'.";
+        System.out.println("OMG that's a Witch. She has weapon of rank " + randomRank + ". Do you have weapon better then her?\n"
+                + "If so, Type in its name. if not, type in 'no'.");
         String nameOfWeapon = sc.next().toLowerCase();
         if (nameOfWeapon.equals("no")) {
             System.out.println("Bad for you. She is slowly killing you. You are DEAD. GAME OVER.");
@@ -132,7 +118,7 @@ public class Entity {
             int rankingOfPlayersWeapon = sc.nextInt();
             if (player.getWeapons().get(nameOfWeapon).equals(rankingOfPlayersWeapon)) {
                 System.out.println("You did it!");
-                player.getCurrentPosition().setEntityInRoom(null);
+                player.getCurrentPosition().getEntityInRoom().setName(" ");
             } else {
                 System.out.println("Bad for you. She is slowly killing you. You are DEAD. GAME OVER.");
                 player.setGameOver(true);
@@ -180,10 +166,11 @@ public class Entity {
         return loreText2;
     }
 
-    @Override
-    public String toString() {
-        return
-                "name: " + name +
-                        ", loreText: '" + loreText + "'\n";
+    public String getLoreText() {
+        return loreText;
+    }
+
+    public void setSc(Scanner sc) {
+        this.sc = sc;
     }
 }

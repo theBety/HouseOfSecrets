@@ -3,13 +3,16 @@ package Tests;
 import Entities.Entity;
 import Items.Item;
 import Items.LoreItems;
+import Items.Weapon;
 import Player.Player;
 import World.Room;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.io.ByteArrayInputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Scanner;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -39,7 +42,7 @@ class EntityTest {
         arrows.add(l);
         p.add(arrows);
         entity.ability();
-        assertEquals("She's dead.", entity.getLoreText2());
+        assertEquals("Okay, I hope I'm okay", entity.getLoreText());
     }
     @Test
     void deadPlayer() {

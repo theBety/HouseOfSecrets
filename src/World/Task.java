@@ -32,15 +32,11 @@ public class Task {
         isItDone = itDone;
     }
 
-    @Override
-    public String toString() {
-        return "Task{" +
-                "requiredItem=" + requiredItem +
-                ", tasksDescription='" + tasksDescription + '\'' +
-                ", isItDone=" + isItDone;
-    }
-
     public String getClueToPassword() {
         return clueToPassword;
+    }
+
+    public boolean isItDone() {
+        return isItDone;
     }
 }

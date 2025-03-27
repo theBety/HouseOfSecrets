@@ -52,11 +52,14 @@ public class GameLoop {
             player.getInventory().add(new LoreItems("flower", 3));
             player.getInventory().add(new LoreItems("vase", 3));
             player.getInventory().add(new LoreItems("string", 3));
+            player.setCoins(800);
 
             do {
                 System.out.println("Where you are: " + player.getCurrentPosition().toString());
                 System.out.println("Inventory: " + player.getInventory().toString());
-
+                if(player.getCurrentPosition().getRoomId() == 0){
+                    System.out.println("nwiv");
+                }
                 if (playEntities) {
                     player.getCurrentPosition().getEntityInRoom().setCurrentPosition(player);
                     player.getCurrentPosition().getEntityInRoom().ability();
