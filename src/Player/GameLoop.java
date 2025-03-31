@@ -1,8 +1,6 @@
 package Player;
 
 import Commands.*;
-import Items.LoreItems;
-import Items.Weapon;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -41,25 +39,10 @@ public class GameLoop {
             intro();
             System.out.println("You're now in room: " + player.getCurrentPosition().getName() + ", with id: " + player.getCurrentPosition().getRoomId());
 
-            player.getInventory().add(new Weapon("arrow", 2));
-            player.getInventory().add(new Weapon("arrow", 2));
-            player.getInventory().add(new Weapon("arrow", 2));
-            player.getInventory().add(new Weapon("arrow", 2));
-            player.getInventory().add(new LoreItems("flower", 3));
-            player.getInventory().add(new LoreItems("flower", 3));
-            player.getInventory().add(new LoreItems("flower", 3));
-            player.getInventory().add(new LoreItems("flower", 3));
-            player.getInventory().add(new LoreItems("flower", 3));
-            player.getInventory().add(new LoreItems("vase", 3));
-            player.getInventory().add(new LoreItems("string", 3));
-            player.setCoins(800);
-
             do {
                 System.out.println("Where you are: " + player.getCurrentPosition().toString());
                 System.out.println("Inventory: " + player.getInventory().toString());
-                if(player.getCurrentPosition().getRoomId() == 0){
-                    System.out.println("nwiv");
-                }
+
                 if (playEntities) {
                     player.getCurrentPosition().getEntityInRoom().setCurrentPosition(player);
                     player.getCurrentPosition().getEntityInRoom().ability();
@@ -106,13 +89,13 @@ public class GameLoop {
                 counter++;
                 if (counter <= 3) {
                     System.out.println(text);
-                    //Thread.sleep(8000);
+                    Thread.sleep(8000);
                     continue;
                 }
                 if (counter <= 8) {
                     System.out.println(text);
                 } else {
-                    //Thread.sleep(20000);
+                    Thread.sleep(20000);
                     System.out.println("""
                             \033[3m
                             Manzanillo 1847
@@ -133,6 +116,8 @@ public class GameLoop {
             }
         } catch (IOException e) {
             System.err.println("Error reading story file");
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
         }
     }
 

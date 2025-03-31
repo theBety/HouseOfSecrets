@@ -20,6 +20,7 @@ public class Settings{
      */
     public void initialize(){
         loadInfo.loadMap(gameLoop.getPlayer().getRoomsInGame());
+        System.out.println(loadInfo.printIntroImage());
         gameLoop.getPlayer().setStart();
         gameLoop.getPlayer().getWeapons().put("bow", 3);
         gameLoop.getPlayer().getWeapons().put("axe", 4);
